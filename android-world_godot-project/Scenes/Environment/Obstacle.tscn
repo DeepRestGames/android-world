@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyhrl75vxkhcv"]
+
+[ext_resource type="Script" uid="uid://coxwde6ryrm0e" path="res://Scripts/Environment/Obstacle.gd" id="1_uogot"]
+[ext_resource type="Texture2D" uid="uid://c0hr88pmffrkx" path="res://Assets/Sprites/RoundShadow.png" id="2_imrxe"]
+[ext_resource type="Texture2D" uid="uid://ipsx7ejwwhe6" path="res://Assets/Sprites/Rocks.png" id="2_uogot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uogot"]
+radius = 92.0054
+
+[node name="Obstacle" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_uogot")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.247059)
+position = Vector2(-0.218329, 63)
+scale = Vector2(1.59716, 0.435381)
+texture = ExtResource("2_imrxe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_uogot")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uogot")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_uogot")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

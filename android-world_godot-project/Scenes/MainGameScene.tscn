@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://c45w2d26ukahn"]
+
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="1_cp132"]
+[ext_resource type="Script" uid="uid://c8p7jaqynocev" path="res://Scripts/GameManagement/DifficultyManager.gd" id="1_qla6v"]
+[ext_resource type="Texture2D" uid="uid://c24541cla84fj" path="res://Assets/Sprites/Ship.png" id="2_2axvc"]
+[ext_resource type="PackedScene" uid="uid://b3nrx4ogcfxml" path="res://Scenes/Player/Player.tscn" id="3_7px2j"]
+[ext_resource type="PackedScene" uid="uid://c4xmmv3ww4l3p" path="res://Scenes/Enemies/EnemyRanged.tscn" id="5_qlmn3"]
+[ext_resource type="PackedScene" uid="uid://1jxgf3akb6ir" path="res://Scenes/Enemies/EnemyWalking.tscn" id="6_3g84q"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cp132"]
+vertices = PackedVector2Array(52671, -50690, 52415, 51433.9, -51245, 50666.1, -51245, -50818)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-51255, -50828, 52681, -50700, 52425, 51444, -51255, 50676)])
+
+[sub_resource type="Curve2D" id="Curve2D_qla6v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, -500, 0, 0, 0, 0, 800, -500, 0, 0, 0, 0, 800, 500, 0, 0, 0, 0, -800, 500)
+}
+point_count = 4
+
+[node name="MainGameScene" type="Node2D"]
+
+[node name="GroundSprite" type="Sprite2D" parent="."]
+modulate = Color(0.235294, 0.266667, 0.235294, 1)
+scale = Vector2(1000, 1000)
+texture = ExtResource("1_cp132")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_cp132")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Ship" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_2axvc")
+hframes = 13
+vframes = 2
+frame = 13
+
+[node name="Player" parent="." instance=ExtResource("3_7px2j")]
+position = Vector2(-166, 89)
+
+[node name="DifficultyManager" type="Node2D" parent="Player"]
+script = ExtResource("1_qla6v")
+enemy_scenes = Array[PackedScene]([ExtResource("5_qlmn3"), ExtResource("6_3g84q")])
+
+[node name="EnemySpawningPath" type="Path2D" parent="Player/DifficultyManager"]
+curve = SubResource("Curve2D_qla6v")
+
+[node name="EnemyPathFollow2D" type="PathFollow2D" parent="Player/DifficultyManager/EnemySpawningPath"]
+position = Vector2(-800, -500)

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://c04t44e7s7kf4"]
+
+[ext_resource type="Script" uid="uid://dli2w0tkeej1m" path="res://Scripts/UI/ArrowHintPowerupChip.gd" id="1_0avtt"]
+[ext_resource type="Texture2D" uid="uid://brqrjvs14wusx" path="res://Assets/UI/Arrow_V3.png" id="2_0avtt"]
+[ext_resource type="FontFile" uid="uid://078w1ofr2xjx" path="res://Assets/Fonts/Micro5-Regular.ttf" id="3_pbnol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbnol"]
+atlas = ExtResource("2_0avtt")
+region = Rect2(0, 0, 17, 17)
+
+[node name="ArrowHintPowerup" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_0avtt")
+
+[node name="ArrowTexture" type="TextureRect" parent="."]
+modulate = Color(0.4272, 0.79744, 0.89, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_pbnol")
+stretch_mode = 5
+flip_h = true
+
+[node name="DistanceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("3_pbnol")
+theme_override_font_sizes/font_size = 30
+text = "10m"
+horizontal_alignment = 1
+vertical_alignment = 1

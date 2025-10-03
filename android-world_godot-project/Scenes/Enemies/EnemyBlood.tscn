@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://5cg5ot1hiyen"]
+
+[ext_resource type="Script" uid="uid://d3x4n7nm3u5pe" path="res://Scripts/Enemies/EnemyBlood.gd" id="1_bx75w"]
+[ext_resource type="Texture2D" uid="uid://b5xhv2f8bby55" path="res://Assets/Sprites/AlienBloodParticles.png" id="1_qvaf0"]
+
+[node name="EnemyBlood" type="Sprite2D"]
+z_index = -50
+scale = Vector2(2.5, 1.5)
+texture = ExtResource("1_qvaf0")
+hframes = 4
+vframes = 4
+frame = 15
+script = ExtResource("1_bx75w")

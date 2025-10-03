@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://chs5kvqny6r0s"]
+
+[ext_resource type="Texture2D" uid="uid://27dfh6ll46vy" path="res://Assets/UITextures/R_Button.png" id="1_u2llv"]
+[ext_resource type="FontFile" uid="uid://078w1ofr2xjx" path="res://Assets/Fonts/Micro5-Regular.ttf" id="2_o0iw2"]
+
+[node name="ReloadTutorial" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("1_u2llv")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -58.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_o0iw2")
+theme_override_font_sizes/font_size = 20
+text = "RELOAD"
+horizontal_alignment = 1
+vertical_alignment = 1

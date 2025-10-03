@@ -1,0 +1,246 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkvo0h7rsouq1"]
+
+[ext_resource type="Script" uid="uid://bi58t1gotev0d" path="res://Scripts/UI/slideshow.gd" id="1_8x3a3"]
+[ext_resource type="FontFile" uid="uid://078w1ofr2xjx" path="res://Assets/Fonts/Micro5-Regular.ttf" id="2_ayn7r"]
+[ext_resource type="Texture2D" uid="uid://do12nb07612fg" path="res://Assets/Illustrations/Intro1.png" id="3_rq348"]
+[ext_resource type="Texture2D" uid="uid://bigvfghl1xb80" path="res://Assets/Illustrations/Intro2.png" id="4_72vj6"]
+[ext_resource type="Texture2D" uid="uid://b5igkp7ckm8mm" path="res://Assets/Illustrations/Intro3.png" id="5_m6acn"]
+[ext_resource type="Texture2D" uid="uid://bjuy7na8dxpg8" path="res://Assets/Illustrations/Intro4.png" id="6_6xym5"]
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8x3a3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1169.0
+offset_bottom = 676.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label0" type="Label" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 64.0
+offset_right = 1105.0
+offset_bottom = 397.0
+theme_override_colors/font_color = Color(0, 1, 0.05, 1)
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "press any key...▮
+"
+
+[node name="Label1" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 627.0
+offset_top = 226.0
+offset_right = 1075.0
+offset_bottom = 307.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "Our expedition was vital
+to the survival of humankind.
+
+The samples and data had to be
+brought back at any cost."
+
+[node name="Intro1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 99.0
+offset_top = 69.0
+offset_right = 611.0
+offset_bottom = 581.0
+texture = ExtResource("3_rq348")
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 625.0
+offset_top = 453.0
+offset_right = 1082.0
+offset_bottom = 534.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "Yet, somehow, we messed up our hyperjump."
+
+[node name="Intro2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 352.0
+offset_top = 127.0
+offset_right = 864.0
+offset_bottom = 639.0
+texture = ExtResource("4_72vj6")
+
+[node name="Intro3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 534.0
+offset_top = 126.0
+offset_right = 1046.0
+offset_bottom = 638.0
+texture = ExtResource("5_m6acn")
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 627.0
+offset_top = 157.0
+offset_right = 1211.0
+offset_bottom = 238.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "I managed to initiate emergency takeoff
+with a backup shuttle just in time…"
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 783.0
+offset_top = 390.0
+offset_right = 1367.0
+offset_bottom = 471.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "…and landed
+God knows where."
+
+[node name="Label5" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 301.0
+offset_top = 300.0
+offset_right = 885.0
+offset_bottom = 405.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "The shuttle’s hyperjump navigator is totally busted.
+
+...but the generator is still online."
+
+[node name="Label6" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 47.0
+offset_top = 64.0
+offset_right = 1105.0
+offset_bottom = 397.0
+theme_override_colors/font_color = Color(0, 1, 0.05, 1)
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "940116 138725 703403 94957 758922 284717 103870 373613 975080 321789 964585 572400
+316752 710695 784198 556865 58735 917578 290731 673837 833547 13630 277876 132332
+755809 164733 15838 68914 685922 91930 388041 876551 447446 92870 314046 221879
+792534 242652 278183 646911 308249 737102 865387 839832 798281 590506 595147 781871 
+712246 826464 713421 84523 398959 435851 314230 105130 543852 837078 49190 826237
+554295 544503 380123 866526 3521 432963 899488 34847 543783 723939 11098 819460 683371
+386874 65828 476785 358625 415510 370147 156625 904981 46422 820676 408428 861738 
+773226 643123 756533 814425 870386 477669 601101 321059 592746 526798 153128 206388
+.
+if onlyOne: InitiateEmergencyProtocol()
+.
+.▮
+"
+
+[node name="Intro4" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 319.0
+offset_top = 76.0
+offset_right = 831.0
+offset_bottom = 588.0
+texture = ExtResource("6_6xym5")
+
+[node name="Label7" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 627.0
+offset_top = 262.0
+offset_right = 1211.0
+offset_bottom = 343.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 48
+text = "AAH!"
+
+[node name="Label8" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 670.0
+offset_top = 428.0
+offset_right = 1254.0
+offset_bottom = 509.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "What the hell was that?"
+
+[node name="Label9" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 47.0
+offset_top = 64.0
+offset_right = 1105.0
+offset_bottom = 397.0
+theme_override_colors/font_color = Color(0, 1, 0.05, 1)
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = ".
+if onlyOne: InitiateEmergencyProtocol()
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+.
+.
+.
+vital signs: stable
+emergency health check up complete
+subject is healthy
+initiating EmergencyProtocol
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+backup completed▮"
+
+[node name="Label10" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 287.0
+offset_top = 237.0
+offset_right = 911.0
+offset_bottom = 486.0
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "I can fix this.
+
+I just need to find the right blueprint file and enough materials.
+
+
+…I just hope this place is uninhabited
+"
+
+[node name="Label11" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 47.0
+offset_top = 64.0
+offset_right = 1105.0
+offset_bottom = 589.0
+theme_override_colors/font_color = Color(0, 1, 0.05, 1)
+theme_override_fonts/font = ExtResource("2_ayn7r")
+theme_override_font_sizes/font_size = 32
+text = "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+backup completed
+
+
+blueprint file locations added to map: please follow the blue arrows
+.
+the yellow arrow will lead you back to the ship
+.
+move with WASD and shoot with the left click
+.
+bring back blueprints and materials to unlock upgrades and print consumables
+.
+.
+.
+good luck ;)▮"

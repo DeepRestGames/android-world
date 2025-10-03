@@ -1,0 +1,168 @@
+[gd_scene load_steps=24 format=3 uid="uid://l8vxen63cqn3"]
+
+[ext_resource type="Script" uid="uid://0k8bm3l7bf6g" path="res://Scripts/Enemies/EnemySpawnPoint.gd" id="1_ber4e"]
+[ext_resource type="PackedScene" uid="uid://c4xmmv3ww4l3p" path="res://Scenes/Enemies/EnemyRanged.tscn" id="2_mqeph"]
+[ext_resource type="PackedScene" uid="uid://1jxgf3akb6ir" path="res://Scenes/Enemies/EnemyWalking.tscn" id="3_stgb1"]
+[ext_resource type="Texture2D" uid="uid://c8caathmvpuwt" path="res://Assets/Sprites/Spawner.png" id="4_mqeph"]
+[ext_resource type="Texture2D" uid="uid://c0hr88pmffrkx" path="res://Assets/Sprites/RoundShadow.png" id="4_stgb1"]
+
+[sub_resource type="Curve" id="Curve_77gy5"]
+_data = [Vector2(0.238325, 0), 0.0, 0.349748, 0, 0, Vector2(1, 1), 3.02371, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g2f86"]
+curve = SubResource("Curve_77gy5")
+
+[sub_resource type="Curve" id="Curve_30do8"]
+_data = [Vector2(0.322866, 0), 0.0, 0.437185, 0, 0, Vector2(1, 1), 3.69706, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xjxfa"]
+curve = SubResource("Curve_30do8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_racaa"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.4
+scale_max = 0.4
+color = Color(0.635294, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_g2f86")
+emission_curve = SubResource("CurveTexture_xjxfa")
+
+[sub_resource type="Curve" id="Curve_akdvv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.86259, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sn62s"]
+curve = SubResource("Curve_akdvv")
+
+[sub_resource type="Curve" id="Curve_3b14s"]
+_data = [Vector2(0, 0), 0.0, 2.07772, 0, 0, Vector2(1, 1), -1.68844, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0gwvn"]
+curve = SubResource("Curve_3b14s")
+
+[sub_resource type="Curve" id="Curve_hj0ra"]
+_limits = [0.99, 1.1, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.253944, 0, 0, Vector2(1, 1.08636), -0.175675, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uobgk"]
+curve = SubResource("Curve_hj0ra")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7grtx"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.4
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_uobgk")
+color = Color(0.635294, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_sn62s")
+emission_curve = SubResource("CurveTexture_0gwvn")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqeph"]
+atlas = ExtResource("4_mqeph")
+region = Rect2(128, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stgb1"]
+atlas = ExtResource("4_mqeph")
+region = Rect2(256, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgors"]
+atlas = ExtResource("4_mqeph")
+region = Rect2(0, 64, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cj0yn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqeph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stgb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgors")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8q6ur"]
+radius = 39.0
+height = 152.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1fljk"]
+radius = 1000.0
+
+[node name="EnemySpawnPoint" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ber4e")
+enemy_scenes = Array[PackedScene]([ExtResource("2_mqeph"), ExtResource("3_stgb1")])
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.247059)
+position = Vector2(0, 36.585)
+scale = Vector2(1.59716, 0.435381)
+texture = ExtResource("4_stgb1")
+
+[node name="EnemiesSpawnTimer" type="Timer" parent="."]
+
+[node name="EnemiesParentNode" type="Node2D" parent="."]
+
+[node name="EnemySpawnBuildup_GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+z_index = 5
+z_as_relative = false
+emitting = false
+amount = 80
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_racaa")
+
+[node name="EnemySpawnFlare_GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+z_index = 5
+z_as_relative = false
+emitting = false
+amount = 80
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7grtx")
+
+[node name="SpawnPointSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -6)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_cj0yn")
+animation = &"spawn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8q6ur")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8q6ur")
+
+[node name="AggroArea2D" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea2D"]
+shape = SubResource("CircleShape2D_1fljk")
+
+[connection signal="timeout" from="EnemiesSpawnTimer" to="." method="_on_enemies_spawn_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="AggroArea2D" to="." method="_on_aggro_area_2d_body_entered"]
+[connection signal="body_exited" from="AggroArea2D" to="." method="_on_aggro_area_2d_body_exited"]

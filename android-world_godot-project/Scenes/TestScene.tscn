@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://jx5a5ynajsua"]
+
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="1_b5ayd"]
+[ext_resource type="PackedScene" uid="uid://b3nrx4ogcfxml" path="res://Scenes/Player/Player.tscn" id="2_5lt6y"]
+[ext_resource type="PackedScene" uid="uid://1jxgf3akb6ir" path="res://Scenes/Enemies/EnemyWalking.tscn" id="3_8k7wh"]
+[ext_resource type="PackedScene" uid="uid://c4xmmv3ww4l3p" path="res://Scenes/Enemies/EnemyRanged.tscn" id="4_iufkg"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8k7wh"]
+vertices = PackedVector2Array(946, 365, 1440.14, 764.891, -188.523, 748.102, 676, 365, 1452.85, -126.891, 946, 95, -148.453, -111.094, 676, 95)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(3, 2, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-158, -121, 1463, -137, 1450, 775, -199, 758)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5lt6y"]
+size = Vector2(250, 250)
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.0705882, 0.164706, 0.282353, 1)
+position = Vector2(600, 319)
+scale = Vector2(14.74, 8.58)
+texture = ExtResource("1_b5ayd")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_8k7wh")
+
+[node name="Obstacle" type="StaticBody2D" parent="NavigationRegion2D"]
+position = Vector2(811, 230)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacle"]
+shape = SubResource("RectangleShape2D_5lt6y")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/Obstacle"]
+modulate = Color(0, 0.0823529, 1, 1)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_b5ayd")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_5lt6y")]
+position = Vector2(615, 372)
+
+[node name="EnemyWalking" parent="." instance=ExtResource("3_8k7wh")]
+position = Vector2(192, 129)
+
+[node name="EnemyRanged" parent="." instance=ExtResource("4_iufkg")]
+position = Vector2(48, 543)

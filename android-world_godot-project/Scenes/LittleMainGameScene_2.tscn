@@ -1,0 +1,763 @@
+[gd_scene load_steps=12 format=3 uid="uid://uyxpydjqq0nn"]
+
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="1_8c7kt"]
+[ext_resource type="PackedScene" uid="uid://dyhaxeflnkmln" path="res://Scenes/Ship/Ship.tscn" id="3_8c7kt"]
+[ext_resource type="PackedScene" uid="uid://b3nrx4ogcfxml" path="res://Scenes/Player/Player.tscn" id="3_wyx2f"]
+[ext_resource type="Script" uid="uid://c8p7jaqynocev" path="res://Scripts/GameManagement/DifficultyManager.gd" id="4_ou4kl"]
+[ext_resource type="PackedScene" uid="uid://c4xmmv3ww4l3p" path="res://Scenes/Enemies/EnemyRanged.tscn" id="5_8umxw"]
+[ext_resource type="PackedScene" uid="uid://1jxgf3akb6ir" path="res://Scenes/Enemies/EnemyWalking.tscn" id="6_e6ui8"]
+[ext_resource type="Script" uid="uid://d1h5f5634ob5s" path="res://Scripts/GameManagement/ExpeditionGenerator.gd" id="7_7gdlg"]
+[ext_resource type="PackedScene" uid="uid://dyhrl75vxkhcv" path="res://Scenes/Environment/Obstacle.tscn" id="8_ocq3j"]
+[ext_resource type="PackedScene" uid="uid://dc8x5rtjnlaa3" path="res://Scenes/Environment/ObstacleWithDrop.tscn" id="9_6lik2"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cp132"]
+vertices = PackedVector2Array(20054, -19893, 20011, 19865, -19999, 19867, -20054, -19942)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-20064, -19952, 20064, -19903, 20021, 19875, -20009, 19877)])
+
+[sub_resource type="Curve2D" id="Curve2D_qla6v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, -500, 0, 0, 0, 0, 800, -500, 0, 0, 0, 0, 800, 500, 0, 0, 0, 0, -800, 500)
+}
+point_count = 4
+
+[node name="MainGameScene" type="Node2D"]
+
+[node name="GroundFeatures" type="Node2D" parent="."]
+
+[node name="GroundSprite" type="Sprite2D" parent="GroundFeatures"]
+modulate = Color(0.0705882, 0.164706, 0.282353, 1)
+scale = Vector2(162.28, 142.4)
+texture = ExtResource("1_8c7kt")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_cp132")
+
+[node name="LevelBorder" type="Node2D" parent="NavigationRegion2D"]
+
+[node name="Obstacle" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7252, -3985)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle2" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7340, -3714)
+scale = Vector2(2, 2)
+
+[node name="Obstacle3" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7227, -3437)
+scale = Vector2(2, 2)
+
+[node name="Obstacle4" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7319, -3132)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle5" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7282, -2867)
+scale = Vector2(2, 2)
+
+[node name="Obstacle6" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7136, -2572)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle7" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7412, -2421)
+scale = Vector2(2, 2)
+
+[node name="Obstacle8" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7174, -2263)
+scale = Vector2(2, 2)
+
+[node name="Obstacle9" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7382, -2145)
+scale = Vector2(2, 2)
+
+[node name="Obstacle10" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7470, -1874)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle11" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7357, -1597)
+scale = Vector2(2, 2)
+
+[node name="Obstacle12" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7449, -1292)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle13" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7412, -1027)
+scale = Vector2(2, 2)
+
+[node name="Obstacle14" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7266, -732)
+scale = Vector2(2, 2)
+
+[node name="Obstacle15" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7542, -581)
+scale = Vector2(2, 2)
+
+[node name="Obstacle16" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7304, -423)
+scale = Vector2(2, 2)
+
+[node name="Obstacle17" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6818, -21)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle18" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7455, -85)
+scale = Vector2(2, 2)
+
+[node name="Obstacle19" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7631, 217)
+scale = Vector2(2, 2)
+
+[node name="Obstacle20" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7430, 489)
+scale = Vector2(2, 2)
+
+[node name="Obstacle21" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7544, 745)
+scale = Vector2(2, 2)
+
+[node name="Obstacle22" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7360, 1024)
+scale = Vector2(2, 2)
+
+[node name="Obstacle23" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7323, 1275)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle24" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7068, 1433)
+scale = Vector2(2, 2)
+
+[node name="Obstacle25" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7236, 1636)
+scale = Vector2(2, 2)
+
+[node name="Obstacle26" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7324, 1907)
+scale = Vector2(2, 2)
+
+[node name="Obstacle27" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7211, 2184)
+scale = Vector2(2, 2)
+
+[node name="Obstacle28" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7303, 2489)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle29" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7266, 2754)
+scale = Vector2(2, 2)
+
+[node name="Obstacle30" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7120, 3049)
+scale = Vector2(2, 2)
+
+[node name="Obstacle91" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-612, -5752)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle118" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(925, -5852)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle110" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5690, -4239)
+scale = Vector2(2, 2)
+
+[node name="Obstacle111" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5972, -4013)
+scale = Vector2(2, 2)
+
+[node name="Obstacle112" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6200, -3786)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle31" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7396, 3200)
+scale = Vector2(2, 2)
+
+[node name="Obstacle169" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3268, 4947)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle32" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7158, 3358)
+scale = Vector2(2, 2)
+
+[node name="Obstacle33" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6914, 3507)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle34" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7002, 3778)
+scale = Vector2(2, 2)
+
+[node name="Obstacle35" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6774, 3961)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle36" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6866, 4266)
+scale = Vector2(2, 2)
+
+[node name="Obstacle37" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6640, 4507)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle38" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6475, 4797)
+scale = Vector2(2, 2)
+
+[node name="Obstacle114" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6458, -3591)
+scale = Vector2(2, 2)
+
+[node name="Obstacle39" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3420, 5209)
+scale = Vector2(2, 2)
+
+[node name="Obstacle40" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6196, 4991)
+scale = Vector2(2, 2)
+
+[node name="Obstacle41" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-332, -5730)
+scale = Vector2(2, 2)
+
+[node name="Obstacle42" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-86, -5834)
+scale = Vector2(2, 2)
+
+[node name="Obstacle43" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(118, -5845)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle44" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6658, -3447)
+
+[node name="Obstacle45" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6730, -3233)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle115" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7004, -3053)
+scale = Vector2(2, 2)
+
+[node name="Obstacle46" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6977, -2606)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle47" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7093, -2805)
+
+[node name="Obstacle48" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7229, -2496)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle49" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7182, -2186)
+scale = Vector2(2, 2)
+
+[node name="Obstacle50" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7245, -1812)
+scale = Vector2(2.5, 2.5)
+
+[node name="Obstacle51" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7168, -1428)
+scale = Vector2(2, 2)
+
+[node name="Obstacle52" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7325, -1157)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle53" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6924, -1060)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle54" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7183, -880)
+scale = Vector2(2, 2)
+
+[node name="Obstacle55" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7312, -523)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle56" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6963, -577)
+scale = Vector2(2, 2)
+
+[node name="Obstacle57" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7104, -285)
+scale = Vector2(2, 2)
+
+[node name="Obstacle58" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7367, -47)
+scale = Vector2(2, 2)
+
+[node name="Obstacle59" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7220, 290)
+scale = Vector2(2, 2)
+
+[node name="Obstacle60" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7019, 548)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle61" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-7158, 821)
+scale = Vector2(2, 2)
+
+[node name="Obstacle62" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6943, 1124)
+scale = Vector2(2, 2)
+
+[node name="Obstacle63" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6667, 1275)
+scale = Vector2(2, 2)
+
+[node name="Obstacle64" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6905, 1433)
+scale = Vector2(2, 2)
+
+[node name="Obstacle65" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6737, 1636)
+scale = Vector2(2, 2)
+
+[node name="Obstacle66" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6649, 1907)
+scale = Vector2(2, 2)
+
+[node name="Obstacle67" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6766, 2141)
+
+[node name="Obstacle68" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6584, 2406)
+scale = Vector2(2.5, 2.5)
+
+[node name="Obstacle69" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6707, 2754)
+scale = Vector2(2, 2)
+
+[node name="Obstacle70" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6853, 3049)
+scale = Vector2(2, 2)
+
+[node name="Obstacle71" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6577, 3200)
+scale = Vector2(2, 2)
+
+[node name="Obstacle72" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6815, 3358)
+scale = Vector2(2, 2)
+
+[node name="Obstacle73" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6499, 3641)
+scale = Vector2(2.5, 2.5)
+
+[node name="Obstacle74" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6353, 3932)
+
+[node name="Obstacle75" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6158, 4059)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle76" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5907, 4168)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle77" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5778, 4428)
+scale = Vector2(2, 2)
+
+[node name="Obstacle78" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5500, 4595)
+scale = Vector2(2, 2)
+
+[node name="Obstacle79" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5366, 4837)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle80" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5084, 4953)
+scale = Vector2(2, 2)
+
+[node name="Obstacle81" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4586, 4949)
+scale = Vector2(2, 2)
+
+[node name="Obstacle82" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4824, 5107)
+scale = Vector2(2, 2)
+
+[node name="Obstacle83" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4481, 5255)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle84" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4287, 5527)
+scale = Vector2(2, 2)
+
+[node name="Obstacle85" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4004, 5393)
+scale = Vector2(2, 2)
+
+[node name="Obstacle86" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-3718, 5633)
+scale = Vector2(2, 2)
+
+[node name="Obstacle87" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-3445, 5599)
+
+[node name="Obstacle88" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-3242, 5794)
+scale = Vector2(2, 2)
+
+[node name="Obstacle89" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-2975, 5780)
+scale = Vector2(2, 2)
+
+[node name="Obstacle90" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-2693, 5651)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle93" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1069, -5545)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle92" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-777, -5487)
+scale = Vector2(2, 2)
+
+[node name="Obstacle94" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1247, -5267)
+scale = Vector2(2, 2)
+
+[node name="Obstacle96" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1656, -5218)
+scale = Vector2(2, 2)
+
+[node name="Obstacle95" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1422, -4985)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle97" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1942, -5068)
+scale = Vector2(2, 2)
+
+[node name="Obstacle98" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-2253, -5114)
+scale = Vector2(2, 2)
+
+[node name="Obstacle99" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-2523, -4964)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle100" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-2821, -4946)
+scale = Vector2(2, 2)
+
+[node name="Obstacle102" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-3403, -5034)
+scale = Vector2(2, 2)
+
+[node name="Obstacle101" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-3095, -4825)
+scale = Vector2(2, 2)
+
+[node name="Obstacle103" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-3775, -4990)
+scale = Vector2(2, 2)
+
+[node name="Obstacle104" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4110, -5148)
+scale = Vector2(2, 2)
+
+[node name="Obstacle105" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4369, -4923)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle106" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4706, -4968)
+scale = Vector2(2.5, 2.5)
+
+[node name="Obstacle107" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-4912, -4710)
+
+[node name="Obstacle108" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5165, -4590)
+scale = Vector2(2, 2)
+
+[node name="Obstacle109" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-5383, -4342)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle113" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-6238, -3437)
+
+[node name="Obstacle141" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-2378, 5617)
+scale = Vector2(2, 2)
+
+[node name="Obstacle142" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-2117, 5795)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle144" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1592, 5417)
+scale = Vector2(2.5, 2.5)
+
+[node name="Obstacle143" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1808, 5724)
+scale = Vector2(2, 2)
+
+[node name="Obstacle145" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1291, 5611)
+scale = Vector2(2, 2)
+
+[node name="Obstacle146" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-878, 5206)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle147" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-1031, 5429)
+scale = Vector2(2, 2)
+
+[node name="Obstacle148" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-737, 5612)
+scale = Vector2(2, 2)
+
+[node name="Obstacle149" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-460, 5499)
+scale = Vector2(2, 2)
+
+[node name="Obstacle150" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(-177, 5365)
+scale = Vector2(2, 2)
+
+[node name="Obstacle151" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(45, 5611)
+scale = Vector2(2, 2)
+
+[node name="Obstacle152" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(340, 5587)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle153" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(585, 5766)
+scale = Vector2(2, 2)
+
+[node name="Obstacle154" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(852, 5752)
+scale = Vector2(2, 2)
+
+[node name="Obstacle155" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1134, 5623)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle156" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6306, 3641)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle157" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(4793, 5424)
+scale = Vector2(2, 2)
+
+[node name="Obstacle158" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7389, 4813)
+scale = Vector2(2, 2)
+
+[node name="Obstacle161" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5651, 4944)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle159" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5919, 5112)
+scale = Vector2(2, 2)
+
+[node name="Obstacle160" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5410, 5153)
+scale = Vector2(2, 2)
+
+[node name="Obstacle162" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5095, 4931)
+scale = Vector2(2, 2)
+
+[node name="Obstacle163" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(4829, 5115)
+scale = Vector2(2, 2)
+
+[node name="Obstacle165" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(4199, 5248)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle164" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(4463, 5448)
+scale = Vector2(2, 2)
+
+[node name="Obstacle166" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3670, 5100)
+
+[node name="Obstacle167" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3887, 5284)
+scale = Vector2(2, 2)
+
+[node name="Obstacle168" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3704, 4569)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle170" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3005, 5044)
+scale = Vector2(2, 2)
+
+[node name="Obstacle171" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(2720, 5178)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle172" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(2456, 5312)
+scale = Vector2(2, 2)
+
+[node name="Obstacle173" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(2186, 5379)
+scale = Vector2(2, 2)
+
+[node name="Obstacle174" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1951, 5258)
+scale = Vector2(2, 2)
+
+[node name="Obstacle175" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1624, 5192)
+scale = Vector2(2.5, 2.5)
+
+[node name="Obstacle176" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1412, 5486)
+scale = Vector2(2, 2)
+
+[node name="Obstacle177" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(965, 4993)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle178" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1094, 5875)
+scale = Vector2(2, 2)
+
+[node name="Obstacle116" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(376, -5737)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle117" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(677, -5647)
+scale = Vector2(2, 2)
+
+[node name="Obstacle119" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1180, -5739)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle122" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(2019, -6071)
+scale = Vector2(2, 2)
+
+[node name="Obstacle121" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1763, -5919)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle120" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(1492, -5771)
+scale = Vector2(2, 2)
+
+[node name="Obstacle123" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(2377, -5992)
+scale = Vector2(2.5, 2.5)
+
+[node name="Obstacle124" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(2714, -6073)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle125" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3015, -6167)
+scale = Vector2(2, 2)
+
+[node name="Obstacle126" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3302, -5991)
+scale = Vector2(2, 2)
+
+[node name="Obstacle127" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3626, -5922)
+scale = Vector2(2, 2)
+
+[node name="Obstacle128" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(3940, -5856)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle129" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(4212, -5743)
+scale = Vector2(2, 2)
+
+[node name="Obstacle130" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(4521, -5621)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle131" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(4792, -5607)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle133" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5281, -5472)
+scale = Vector2(2, 2)
+
+[node name="Obstacle132" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5009, -5434)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle134" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5539, -5291)
+scale = Vector2(2, 2)
+
+[node name="Obstacle135" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5717, -5070)
+scale = Vector2(2, 2)
+
+[node name="Obstacle136" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(5982, -4906)
+scale = Vector2(1.5, 1.5)
+
+[node name="Obstacle137" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6249, -4752)
+scale = Vector2(2.2, 2.2)
+
+[node name="Obstacle138" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6633, -4710)
+scale = Vector2(2, 2)
+
+[node name="Obstacle139" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(6885, -4431)
+scale = Vector2(2, 2)
+
+[node name="Obstacle140" parent="NavigationRegion2D/LevelBorder" instance=ExtResource("8_ocq3j")]
+position = Vector2(7220, -4282)
+scale = Vector2(2, 2)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="SpareConsumables" type="Node2D" parent="."]
+
+[node name="Ship" parent="." instance=ExtResource("3_8c7kt")]
+
+[node name="Player" parent="." instance=ExtResource("3_wyx2f")]
+position = Vector2(-166, 89)
+
+[node name="DifficultyManager" type="Node2D" parent="Player"]
+script = ExtResource("4_ou4kl")
+enemy_scenes = Array[PackedScene]([ExtResource("5_8umxw"), ExtResource("6_e6ui8")])
+
+[node name="EnemySpawningPath" type="Path2D" parent="Player/DifficultyManager"]
+curve = SubResource("Curve2D_qla6v")
+
+[node name="EnemyPathFollow2D" type="PathFollow2D" parent="Player/DifficultyManager/EnemySpawningPath"]
+position = Vector2(-800, -500)
+
+[node name="ExpeditionGenerator" type="Node2D" parent="."]
+script = ExtResource("7_7gdlg")
+environmental_obstacles = Array[PackedScene]([ExtResource("8_ocq3j"), ExtResource("9_6lik2")])

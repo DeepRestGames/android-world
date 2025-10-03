@@ -1,0 +1,863 @@
+[gd_scene load_steps=33 format=3 uid="uid://b8e4ms8gpa7de"]
+
+[ext_resource type="Script" uid="uid://cls3l3tvbwhrv" path="res://Scripts/UI/AmmoCounter.gd" id="1_omqfp"]
+[ext_resource type="FontFile" uid="uid://078w1ofr2xjx" path="res://Assets/Fonts/Micro5-Regular.ttf" id="2_gmqj4"]
+[ext_resource type="Script" uid="uid://bore17jo71by6" path="res://Scripts/UI/FabricatorMaterialCounter.gd" id="2_xaom8"]
+[ext_resource type="Script" uid="uid://ykgqogdlqidp" path="res://Scripts/UI/HPCounter.gd" id="4_4bm6u"]
+[ext_resource type="Script" uid="uid://blctfngfvyhaa" path="res://Scripts/UI/PowerupChipsCounter.gd" id="4_d2sja"]
+[ext_resource type="Texture2D" uid="uid://e0nxhcl6hn3s" path="res://Assets/Sprites/Scrap.png" id="4_dds1n"]
+[ext_resource type="Script" uid="uid://dmqrx6bkvm48c" path="res://Scripts/UI/ArrowHintsManager.gd" id="5_d2sja"]
+[ext_resource type="Script" uid="uid://ck6vs1q2qt8yj" path="res://Scripts/UI/ArrowHintShip.gd" id="5_lelo4"]
+[ext_resource type="Texture2D" uid="uid://dd4wx1tafwr26" path="res://Assets/Sprites/FloppyDisk.png" id="6_cn5rm"]
+[ext_resource type="Texture2D" uid="uid://becgswybqlulg" path="res://Assets/UI/HeartV2.png" id="8_cn5rm"]
+[ext_resource type="Script" uid="uid://dac0rqgt8qakd" path="res://Scripts/UI/PotionsCounter.gd" id="9_i4i0y"]
+[ext_resource type="Script" uid="uid://dkten4p1hdo57" path="res://Scripts/UI/BombsCounter.gd" id="10_yenib"]
+[ext_resource type="Texture2D" uid="uid://brqrjvs14wusx" path="res://Assets/UI/Arrow_V3.png" id="11_cn5rm"]
+[ext_resource type="Script" uid="uid://dvxby01eopx46" path="res://Scripts/UI/InteractionPrompt.gd" id="11_pydgx"]
+[ext_resource type="Texture2D" uid="uid://c57y1q7g0c0b0" path="res://Assets/UITextures/E_Button.png" id="12_eebq5"]
+[ext_resource type="Script" uid="uid://6q37llehwjjk" path="res://Scripts/Ship/ShipMenu.gd" id="13_18ujm"]
+[ext_resource type="Texture2D" uid="uid://depuhtpigf0n1" path="res://Assets/UI/Consumables.png" id="13_ako3u"]
+[ext_resource type="Script" uid="uid://qccpvk1auj7o" path="res://Scripts/Ship/FabricatorPanel.gd" id="14_jt2rc"]
+[ext_resource type="Script" uid="uid://7ps6v0je1128" path="res://Scripts/Ship/PowerupsPanel.gd" id="15_jbjhr"]
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="15_pd044"]
+[ext_resource type="Script" uid="uid://bqgxhf03v15b8" path="res://Scripts/UI/BlackScreen.gd" id="18_b3vmo"]
+[ext_resource type="Texture2D" uid="uid://clnud4g1kr1vv" path="res://Assets/Illustrations/ShipInteriorBackground.png" id="18_khvou"]
+[ext_resource type="Script" uid="uid://bi5t2me3eqvea" path="res://Scripts/Ship/MoveShipPanel.gd" id="20_55bpt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd1yt"]
+atlas = ExtResource("11_cn5rm")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ako3u"]
+atlas = ExtResource("4_dds1n")
+region = Rect2(72, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khvou"]
+atlas = ExtResource("6_cn5rm")
+region = Rect2(11, 13, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55bpt"]
+atlas = ExtResource("8_cn5rm")
+region = Rect2(3, 4, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n5r3"]
+atlas = ExtResource("13_ako3u")
+region = Rect2(2.5, 2, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h4o4"]
+atlas = ExtResource("13_ako3u")
+region = Rect2(18.5, 18.5, 11, 11)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eebq5"]
+bg_color = Color(1, 1, 1, 0.133333)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18ujm"]
+bg_color = Color(1, 1, 1, 0.109804)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4bpa"]
+atlas = ExtResource("4_dds1n")
+region = Rect2(72, 8, 16, 16)
+
+[node name="HUD" type="Control"]
+z_index = 100
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ArrowHints" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_d2sja")
+
+[node name="ArrowHintShip" type="Control" parent="ArrowHints"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_lelo4")
+
+[node name="ArrowTexture" type="TextureRect" parent="ArrowHints/ArrowHintShip"]
+modulate = Color(0.85, 0.68425, 0.5185, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.3, 1.3)
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_yd1yt")
+stretch_mode = 5
+flip_h = true
+
+[node name="DistanceLabel" type="Label" parent="ArrowHints/ArrowHintShip"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 30
+text = "10m"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArrowHintPowerups" type="Control" parent="ArrowHints"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="AmmoCounter" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.980903
+anchor_top = 0.976852
+anchor_right = 0.980903
+anchor_bottom = 0.976852
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_omqfp")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AmmoCounter"]
+layout_mode = 1
+offset_left = -44.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentAmmo" type="Label" parent="AmmoCounter/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "5"
+
+[node name="Separator" type="Label" parent="AmmoCounter/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "/"
+
+[node name="MaxAmmo" type="Label" parent="AmmoCounter/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "10"
+
+[node name="FabricatorMaterialCounter" type="Control" parent="."]
+process_mode = 3
+layout_mode = 1
+anchor_left = 0.980903
+anchor_top = 0.0231481
+anchor_right = 0.980903
+anchor_bottom = 0.0231481
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("2_xaom8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FabricatorMaterialCounter"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="FabricatorMaterialIcon" type="TextureRect" parent="FabricatorMaterialCounter/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ako3u")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="CurrentAmount" type="Label" parent="FabricatorMaterialCounter/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+
+[node name="PowerupChipsCounter" type="Control" parent="."]
+process_mode = 3
+layout_mode = 1
+anchor_left = 0.980903
+anchor_top = 0.0231481
+anchor_right = 0.980903
+anchor_bottom = 0.0231481
+offset_left = -0.000244141
+offset_top = 55.0
+offset_right = -0.000244141
+offset_bottom = 55.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("4_d2sja")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PowerupChipsCounter"]
+layout_direction = 3
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="PowerupChipIcon" type="TextureRect" parent="PowerupChipsCounter/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_khvou")
+expand_mode = 2
+
+[node name="CurrentAmount" type="Label" parent="PowerupChipsCounter/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+
+[node name="HPCounter" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.0190972
+anchor_top = 0.0231481
+anchor_right = 0.0190972
+anchor_bottom = 0.0231481
+mouse_filter = 2
+script = ExtResource("4_4bm6u")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HPCounter"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="HPIcon" type="TextureRect" parent="HPCounter/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_55bpt")
+expand_mode = 2
+
+[node name="CurrentAmount" type="Label" parent="HPCounter/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="PotionsCounter" type="Control" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -128.0
+offset_right = 22.0
+offset_bottom = -128.0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("9_i4i0y")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PotionsCounter"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="PotionlIcon" type="TextureRect" parent="PotionsCounter/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0n5r3")
+expand_mode = 2
+
+[node name="CurrentAmount" type="Label" parent="PotionsCounter/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+
+[node name="BombsCounter" type="Control" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -68.0
+offset_right = 60.0
+offset_bottom = -68.0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("10_yenib")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BombsCounter"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="BomblIcon" type="TextureRect" parent="BombsCounter/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5h4o4")
+expand_mode = 2
+
+[node name="CurrentAmount" type="Label" parent="BombsCounter/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+
+[node name="ShipMenu" type="Control" parent="."]
+process_mode = 3
+visible = false
+z_index = 150
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_18ujm")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ShipMenu"]
+z_as_relative = false
+layout_mode = 0
+offset_left = -0.000427246
+offset_top = -1.52588e-05
+offset_right = 39.9996
+offset_bottom = 40.0
+texture = ExtResource("18_khvou")
+
+[node name="Background" type="Panel" parent="ShipMenu"]
+custom_minimum_size = Vector2(700, 550)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.239583
+anchor_top = 0.114198
+anchor_right = 0.760417
+anchor_bottom = 0.885802
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eebq5")
+metadata/_edit_use_anchors_ = true
+
+[node name="PowerupsPanel" type="Panel" parent="ShipMenu/Background"]
+custom_minimum_size = Vector2(250, 450)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0583333
+anchor_top = 0.05
+anchor_right = 0.475
+anchor_bottom = 0.95
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_18ujm")
+script = ExtResource("15_jbjhr")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShipMenu/Background/PowerupsPanel"]
+custom_minimum_size = Vector2(220, 410)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.0444444
+anchor_right = 0.94
+anchor_bottom = 0.955556
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 40
+text = "POWERUPS"
+horizontal_alignment = 1
+
+[node name="HP" type="VBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HPLabel" type="Label" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 35
+text = "MAX HP"
+horizontal_alignment = 1
+
+[node name="PowerupSlots" type="HBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP"]
+layout_mode = 2
+alignment = 1
+
+[node name="PowerupSlot1" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot2" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot3" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot4" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot5" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="HPLevelUpButton" type="Button" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/PowerupSlots"]
+layout_mode = 2
+focus_neighbor_right = NodePath("../../../../../FabricatorPanel/VBoxContainer/PotionCrafting/VBoxContainer/CraftPotionButton")
+focus_neighbor_bottom = NodePath("../../../Speed/PowerupSlots/SpeedLevelUpButton")
+text = "+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP"]
+layout_mode = 2
+alignment = 2
+
+[node name="PowerupChipIcon" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_khvou")
+expand_mode = 2
+
+[node name="HPCostLabel" type="Label" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 25
+text = "10"
+
+[node name="Speed" type="VBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 35
+text = "SPEED"
+horizontal_alignment = 1
+
+[node name="PowerupSlots" type="HBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed"]
+layout_mode = 2
+alignment = 1
+
+[node name="PowerupSlot1" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot2" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot3" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot4" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot5" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="SpeedLevelUpButton" type="Button" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/PowerupSlots"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../HP/PowerupSlots/HPLevelUpButton")
+focus_neighbor_right = NodePath("../../../../../MoveShipPanel/HBoxContainer/MoveShipButton")
+focus_neighbor_bottom = NodePath("../../../Ammo/PowerupSlots/AmmoLevelUpButton")
+text = "+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed"]
+layout_mode = 2
+alignment = 2
+
+[node name="PowerupChipIcon" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_khvou")
+expand_mode = 2
+
+[node name="SpeedCostLabel" type="Label" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 25
+text = "10"
+
+[node name="Ammo" type="VBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="AmmoLabel" type="Label" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 35
+text = "AMMO CAPACITY"
+horizontal_alignment = 1
+
+[node name="PowerupSlots" type="HBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo"]
+layout_mode = 2
+alignment = 1
+
+[node name="PowerupSlot1" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot2" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot3" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot4" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="PowerupSlot5" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/PowerupSlots"]
+modulate = Color(0.206279, 0.206279, 0.206279, 1)
+layout_mode = 2
+texture = ExtResource("15_pd044")
+expand_mode = 3
+
+[node name="AmmoLevelUpButton" type="Button" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/PowerupSlots"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../../Speed/PowerupSlots/SpeedLevelUpButton")
+focus_neighbor_right = NodePath("../../../../../ExitShipPanel/ExitShipButton")
+text = "+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo"]
+layout_mode = 2
+alignment = 2
+
+[node name="PowerupChipIcon" type="TextureRect" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_khvou")
+expand_mode = 2
+
+[node name="AmmoCostLabel" type="Label" parent="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 25
+text = "10"
+
+[node name="FabricatorPanel" type="Panel" parent="ShipMenu/Background"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.525
+anchor_top = 0.05
+anchor_right = 0.941667
+anchor_bottom = 0.45
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_18ujm")
+script = ExtResource("14_jt2rc")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShipMenu/Background/FabricatorPanel"]
+custom_minimum_size = Vector2(250, 180)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelTitle" type="Label" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 40
+text = "FABRICATOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PotionCrafting" type="HBoxContainer" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PotionlIcon" type="TextureRect" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/PotionCrafting"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0n5r3")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/PotionCrafting"]
+layout_mode = 2
+alignment = 1
+
+[node name="CraftPotionButton" type="Button" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/PotionCrafting/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../../../PowerupsPanel/VBoxContainer/HP/PowerupSlots/HPLevelUpButton")
+focus_neighbor_bottom = NodePath("../../../BombsCrafting/VBoxContainer/CraftBombButton")
+text = "+"
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/PotionCrafting/VBoxContainer"]
+layout_mode = 2
+
+[node name="FabricatorMaterialIcon" type="TextureRect" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/PotionCrafting/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ako3u")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="FabricatorMaterialCost" type="Label" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/PotionCrafting/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 25
+text = "10"
+
+[node name="BombsCrafting" type="HBoxContainer" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BomblIcon" type="TextureRect" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/BombsCrafting"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5h4o4")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/BombsCrafting"]
+layout_mode = 2
+alignment = 1
+
+[node name="CraftBombButton" type="Button" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/BombsCrafting/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../../../PowerupsPanel/VBoxContainer/HP/PowerupSlots/HPLevelUpButton")
+focus_neighbor_top = NodePath("../../../PotionCrafting/VBoxContainer/CraftPotionButton")
+focus_neighbor_bottom = NodePath("../../../../../MoveShipPanel/HBoxContainer/MoveShipButton")
+text = "+"
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/BombsCrafting/VBoxContainer"]
+layout_mode = 2
+
+[node name="FabricatorMaterialIcon" type="TextureRect" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/BombsCrafting/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ako3u")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="FabricatorMaterialCost" type="Label" parent="ShipMenu/Background/FabricatorPanel/VBoxContainer/BombsCrafting/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 25
+text = "10"
+
+[node name="MoveShipPanel" type="Panel" parent="ShipMenu/Background"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.525
+anchor_top = 0.5
+anchor_right = 0.941667
+anchor_bottom = 0.7
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_18ujm")
+script = ExtResource("20_55bpt")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShipMenu/Background/MoveShipPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -25.0
+offset_right = 75.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoveShipButton" type="Button" parent="ShipMenu/Background/MoveShipPanel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 40
+text = "MOVE SHIP"
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ShipMenu/Background/MoveShipPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShipMenu/Background/MoveShipPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_p4bpa")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MoveShipCost" type="Label" parent="ShipMenu/Background/MoveShipPanel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 40
+text = "50"
+
+[node name="ExitShipPanel" type="Panel" parent="ShipMenu/Background"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.525
+anchor_top = 0.75
+anchor_right = 0.941667
+anchor_bottom = 0.95
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_18ujm")
+metadata/_edit_use_anchors_ = true
+
+[node name="ExitShipButton" type="Button" parent="ShipMenu/Background/ExitShipPanel"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.75
+offset_left = 28.0
+offset_top = 9.5
+offset_right = -28.0
+offset_bottom = -9.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../../PowerupsPanel/VBoxContainer/Ammo/PowerupSlots/AmmoLevelUpButton")
+focus_neighbor_top = NodePath("../../MoveShipPanel/HBoxContainer/MoveShipButton")
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 40
+text = "EXIT SHIP"
+
+[node name="InteractionPrompt" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("11_pydgx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InteractionPrompt"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -152.0
+offset_right = 47.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="InteractionPrompt/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 2
+texture = ExtResource("12_eebq5")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="InteractionPrompt/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gmqj4")
+theme_override_font_sizes/font_size = 30
+text = "INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlackScreen" type="TextureRect" parent="."]
+process_mode = 3
+modulate = Color(0, 0, 0, 0)
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("15_pd044")
+script = ExtResource("18_b3vmo")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ShipMenu/Background/PowerupsPanel/VBoxContainer/HP/PowerupSlots/HPLevelUpButton" to="ShipMenu/Background/PowerupsPanel" method="_on_hp_level_up_button_pressed"]
+[connection signal="pressed" from="ShipMenu/Background/PowerupsPanel/VBoxContainer/Speed/PowerupSlots/SpeedLevelUpButton" to="ShipMenu/Background/PowerupsPanel" method="_on_speed_level_up_button_pressed"]
+[connection signal="pressed" from="ShipMenu/Background/PowerupsPanel/VBoxContainer/Ammo/PowerupSlots/AmmoLevelUpButton" to="ShipMenu/Background/PowerupsPanel" method="_on_ammo_level_up_button_pressed"]
+[connection signal="visibility_changed" from="ShipMenu/Background/FabricatorPanel" to="ShipMenu/Background/FabricatorPanel" method="_on_visibility_changed"]
+[connection signal="pressed" from="ShipMenu/Background/FabricatorPanel/VBoxContainer/PotionCrafting/VBoxContainer/CraftPotionButton" to="ShipMenu/Background/FabricatorPanel" method="_on_craft_potion_button_pressed"]
+[connection signal="pressed" from="ShipMenu/Background/FabricatorPanel/VBoxContainer/BombsCrafting/VBoxContainer/CraftBombButton" to="ShipMenu/Background/FabricatorPanel" method="_on_craft_bomb_button_pressed"]
+[connection signal="pressed" from="ShipMenu/Background/MoveShipPanel/HBoxContainer/MoveShipButton" to="ShipMenu/Background/MoveShipPanel" method="_on_move_ship_button_pressed"]
+[connection signal="pressed" from="ShipMenu/Background/ExitShipPanel/ExitShipButton" to="ShipMenu" method="_on_exit_ship_button_pressed"]

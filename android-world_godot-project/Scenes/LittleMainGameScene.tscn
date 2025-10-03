@@ -1,0 +1,69 @@
+[gd_scene load_steps=14 format=3 uid="uid://bgw3vnrt1kuhu"]
+
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="1_aisys"]
+[ext_resource type="Script" uid="uid://daj2r02cwy6mj" path="res://Scripts/Environment/BloodMarks.gd" id="1_t5ngo"]
+[ext_resource type="PackedScene" uid="uid://dyhaxeflnkmln" path="res://Scenes/Ship/Ship.tscn" id="2_aisys"]
+[ext_resource type="PackedScene" uid="uid://b3nrx4ogcfxml" path="res://Scenes/Player/Player.tscn" id="3_t5ngo"]
+[ext_resource type="Script" uid="uid://c8p7jaqynocev" path="res://Scripts/GameManagement/DifficultyManager.gd" id="4_hjrmh"]
+[ext_resource type="PackedScene" uid="uid://c4xmmv3ww4l3p" path="res://Scenes/Enemies/EnemyRanged.tscn" id="5_kcb6y"]
+[ext_resource type="PackedScene" uid="uid://1jxgf3akb6ir" path="res://Scenes/Enemies/EnemyWalking.tscn" id="6_wc7sd"]
+[ext_resource type="Script" uid="uid://d1h5f5634ob5s" path="res://Scripts/GameManagement/ExpeditionGenerator.gd" id="7_nlbeb"]
+[ext_resource type="PackedScene" uid="uid://dyhrl75vxkhcv" path="res://Scenes/Environment/Obstacle.tscn" id="8_vyipi"]
+[ext_resource type="PackedScene" uid="uid://dc8x5rtjnlaa3" path="res://Scenes/Environment/ObstacleWithDrop.tscn" id="9_vx5l4"]
+[ext_resource type="AudioStream" uid="uid://bbbns6gl8amd5" path="res://Assets/Audio/Music/GameplayMusicDanger.wav" id="10_ptqah"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cp132"]
+vertices = PackedVector2Array(20054, -19893, 20011, 19865, -19999, 19867, -20054, -19942)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-20064, -19952, 20064, -19903, 20021, 19875, -20009, 19877)])
+
+[sub_resource type="Curve2D" id="Curve2D_qla6v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -800, -500, 0, 0, 0, 0, 800, -500, 0, 0, 0, 0, 800, 500, 0, 0, 0, 0, -800, 500)
+}
+point_count = 4
+
+[node name="MainGameScene" type="Node2D"]
+
+[node name="BloodMarksParent" type="Node2D" parent="." groups=["BloodMarks"]]
+script = ExtResource("1_t5ngo")
+
+[node name="GroundFeatures" type="Node2D" parent="."]
+
+[node name="GroundSprite" type="Sprite2D" parent="GroundFeatures"]
+modulate = Color(0.0705882, 0.164706, 0.282353, 1)
+z_index = -100
+scale = Vector2(160, 140)
+texture = ExtResource("1_aisys")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_cp132")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="SpareConsumables" type="Node2D" parent="."]
+
+[node name="Ship" parent="." instance=ExtResource("2_aisys")]
+
+[node name="Player" parent="." instance=ExtResource("3_t5ngo")]
+position = Vector2(0, 200)
+
+[node name="DifficultyManager" type="Node2D" parent="Player"]
+script = ExtResource("4_hjrmh")
+enemy_scenes = Array[PackedScene]([ExtResource("5_kcb6y"), ExtResource("6_wc7sd")])
+
+[node name="EnemySpawningPath" type="Path2D" parent="Player/DifficultyManager"]
+curve = SubResource("Curve2D_qla6v")
+
+[node name="EnemyPathFollow2D" type="PathFollow2D" parent="Player/DifficultyManager/EnemySpawningPath"]
+position = Vector2(-800, -500)
+
+[node name="ExpeditionGenerator" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("7_nlbeb")
+environmental_obstacles = Array[PackedScene]([ExtResource("8_vyipi"), ExtResource("9_vx5l4")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ptqah")
+volume_db = -10.0
+autoplay = true
