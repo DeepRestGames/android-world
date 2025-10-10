@@ -13,6 +13,7 @@ var mouse_position_offset: Vector2
 func _ready() -> void:
 	EventBus.connect("set_prevent_inputs", set_prevent_inputs)
 	
+	get_tree().root.size_changed.connect(update_viewport_size)
 	update_viewport_size()
 
 
