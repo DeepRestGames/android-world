@@ -1,17 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://b3nrx4ogcfxml"]
+[gd_scene load_steps=26 format=3 uid="uid://b3nrx4ogcfxml"]
 
 [ext_resource type="Script" uid="uid://44tdvccu5w1g" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://c0hr88pmffrkx" path="res://Assets/Sprites/RoundShadow.png" id="2_fk5o5"]
 [ext_resource type="Script" uid="uid://ba5scic023y72" path="res://Scripts/Player/PlayerPowerups.gd" id="2_t26db"]
 [ext_resource type="Texture2D" uid="uid://yt8jiybethpy" path="res://Assets/Sprites/Player.png" id="2_ude3g"]
 [ext_resource type="Script" uid="uid://gmoeknbubjgr" path="res://Scripts/Player/WeaponRotation.gd" id="3_h54ih"]
+[ext_resource type="Texture2D" uid="uid://bc1mxcvyv2hfv" path="res://Assets/Sprites/Player/Android_SpriteSheet_v0.png" id="4_825xp"]
 [ext_resource type="Texture2D" uid="uid://cqqgt05fxr4ws" path="res://Assets/Sprites/Weapon.png" id="4_ude3g"]
 [ext_resource type="Script" uid="uid://cq5figb4s3vih" path="res://Scripts/Player/ScreenShake.gd" id="5_4wape"]
 [ext_resource type="PackedScene" uid="uid://b8e4ms8gpa7de" path="res://Scenes/UI/HUD.tscn" id="5_jmcll"]
 [ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="7_825xp"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qbkls"]
-radius = 36.0139
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0objx"]
+radius = 13.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w71ue"]
+radius = 13.0
+height = 54.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wape"]
 animation = &"Idle"
@@ -55,7 +61,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("PlayerSprite_backup:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +76,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("PlayerSprite_backup:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -82,7 +88,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprite:flip_h")
+tracks/1/path = NodePath("PlayerSprite_backup:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -99,7 +105,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("PlayerSprite_backup:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -111,7 +117,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprite:flip_h")
+tracks/1/path = NodePath("PlayerSprite_backup:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -128,7 +134,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("PlayerSprite_backup:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -140,7 +146,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprite:flip_h")
+tracks/1/path = NodePath("PlayerSprite_backup:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -163,6 +169,7 @@ collision_mask = 4
 script = ExtResource("1_kyqiw")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0, 0, 0, 0.247059)
 position = Vector2(0, 35)
 scale = Vector2(0.55, 0.15)
@@ -172,13 +179,47 @@ texture = ExtResource("2_fk5o5")
 script = ExtResource("2_t26db")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_qbkls")
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_0objx")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite_backup" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_ude3g")
 hframes = 4
 vframes = 2
+frame = 4
+
+[node name="Weapon" type="Node2D" parent="PlayerSprite_backup"]
+position = Vector2(16, 0)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("3_h54ih")
+
+[node name="WeaponSprite" type="Sprite2D" parent="PlayerSprite_backup/Weapon"]
+position = Vector2(8, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_ude3g")
+hframes = 2
+
+[node name="LaserTracker" type="Sprite2D" parent="PlayerSprite_backup/Weapon/WeaponSprite"]
+modulate = Color(0.841804, 6.06447e-06, 6.73831e-07, 1)
+show_behind_parent = true
+position = Vector2(4.8, 0)
+scale = Vector2(3, 0.01)
+texture = ExtResource("7_825xp")
+offset = Vector2(50, 0)
+
+[node name="MuzzleMarker" type="Node2D" parent="PlayerSprite_backup/Weapon/WeaponSprite"]
+position = Vector2(4.8, 0)
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(-1.675, -10.155)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_825xp")
+offset = Vector2(0, -9.745)
+flip_h = true
+hframes = 3
+vframes = 3
 frame = 4
 
 [node name="Weapon" type="Node2D" parent="PlayerSprite"]
@@ -213,9 +254,14 @@ collision_mask = 34
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_qbkls")
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_w71ue")
 
 [node name="HUD" parent="." instance=ExtResource("5_jmcll")]
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_t26db")
