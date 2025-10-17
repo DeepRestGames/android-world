@@ -24,6 +24,11 @@ signal screen_shake(magnitude, duration)
 signal clear_map_from_enemies
 
 
+# Bike
+@warning_ignore("unused_signal")
+signal get_on_bike
+
+
 # UI
 @warning_ignore("unused_signal")
 signal update_current_ammo(current_ammo)

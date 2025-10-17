@@ -9,12 +9,20 @@ var looking_direction: Vector2
 # Used to calculate looking direction when using mouse
 var mouse_position_offset: Vector2
 
+# Handle button hold
+var get_on_bike_just_triggered = false
+var get_on_bike_button_hold_goal = 1
+var get_on_bike_button_hold_timer
+
 
 func _ready() -> void:
 	EventBus.connect("set_prevent_inputs", set_prevent_inputs)
 	
 	get_tree().root.size_changed.connect(update_viewport_size)
 	update_viewport_size()
+	
+	# Initialize button hold timers
+	get_on_bike_button_hold_timer = get_on_bike_button_hold_goal
 
 
 func update_viewport_size() -> void:
@@ -48,7 +56,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("reload"):
 		EventBus.emit_signal("reload_button_pressed")
 	
-	
 	# Handle looking direction
 	if using_mouse:
 		var mouse_position = get_viewport().get_mouse_position()
@@ -65,3 +72,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Always check for player movement
 	var movement_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	EventBus.emit_signal("player_movement", movement_direction)
+
+
+func _process(delta: float) -> void:
+	# Handle get on/off bike
+	if !get_on_bike_just_triggered and Input.is_action_pressed("get_on_bike"):
+		get_on_bike_button_hold_timer -= delta
+		if get_on_bike_button_hold_timer <= 0:
+			EventBus.emit_signal("get_on_bike")
+			get_on_bike_just_triggered = true
+	if Input.is_action_just_released("get_on_bike"):
+		get_on_bike_button_hold_timer = get_on_bike_button_hold_goal
+		get_on_bike_just_triggered = false

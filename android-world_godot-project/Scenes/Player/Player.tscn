@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://b3nrx4ogcfxml"]
+[gd_scene load_steps=25 format=3 uid="uid://b3nrx4ogcfxml"]
 
 [ext_resource type="Script" uid="uid://44tdvccu5w1g" path="res://Scripts/Player/Player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://c0hr88pmffrkx" path="res://Assets/Sprites/RoundShadow.png" id="2_fk5o5"]
 [ext_resource type="Script" uid="uid://ba5scic023y72" path="res://Scripts/Player/PlayerPowerups.gd" id="2_t26db"]
 [ext_resource type="Texture2D" uid="uid://yt8jiybethpy" path="res://Assets/Sprites/Player.png" id="2_ude3g"]
 [ext_resource type="Script" uid="uid://gmoeknbubjgr" path="res://Scripts/Player/WeaponRotation.gd" id="3_h54ih"]
+[ext_resource type="Texture2D" uid="uid://c5uph3qfw7fuy" path="res://Assets/Sprites/PlayerBike_Draft.png" id="4_ji083"]
 [ext_resource type="Texture2D" uid="uid://cqqgt05fxr4ws" path="res://Assets/Sprites/Weapon.png" id="4_ude3g"]
 [ext_resource type="Script" uid="uid://cq5figb4s3vih" path="res://Scripts/Player/ScreenShake.gd" id="5_4wape"]
 [ext_resource type="PackedScene" uid="uid://b8e4ms8gpa7de" path="res://Scenes/UI/HUD.tscn" id="5_jmcll"]
@@ -173,6 +174,15 @@ script = ExtResource("2_t26db")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qbkls")
+
+[node name="BikeSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(33.88, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("4_ji083")
+hframes = 8
+vframes = 6
+frame = 21
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(2.5, 2.5)

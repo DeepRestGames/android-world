@@ -2,8 +2,13 @@ class_name Player
 extends CharacterBody2D
 
 
+# Camera
+@onready var camera = $Camera2D
+var default_camera_zoom = Vector2.ONE
+
 # Graphics
 @onready var player_sprite = $PlayerSprite
+@onready var bike_sprite = $BikeSprite
 @onready var animation_tree = $AnimationTree
 @onready var weapon = $PlayerSprite/Weapon
 @onready var muzzle_marker = $PlayerSprite/Weapon/WeaponSprite/MuzzleMarker
@@ -11,6 +16,10 @@ extends CharacterBody2D
 const weapon_x_offset = 15
 var player_blood_scene = preload("res://Scenes/Player/PlayerBlood.tscn")
 var blood_marks_parent
+
+# Bike
+var player_on_bike = false
+var bike_min_zoom_level = Vector2(.8, .8)
 
 # Shooting
 var projectile = preload("res://Scenes/Player/PlayerProjectile.tscn")
@@ -72,6 +81,8 @@ func _ready() -> void:
 	EventBus.connect("reload_button_pressed", reload)
 	EventBus.connect("looking_direction_changed", update_looking_direction)
 	EventBus.connect("player_movement", update_movement_direction)
+	
+	EventBus.connect("get_on_bike", get_on_bike)
 
 
 func update_looking_direction(new_looking_direction: Vector2) -> void:
@@ -89,6 +100,25 @@ func update_movement_direction(new_movement_direction: Vector2) -> void:
 	velocity = new_movement_direction * movement_speed
 
 
+func get_on_bike() -> void:
+	if not player_on_bike:
+		player_sprite.hide()
+		bike_sprite.show()
+		
+		var zoom_tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+		zoom_tween.tween_property(camera, "zoom", bike_min_zoom_level, .5)
+		
+		player_on_bike = true
+	else:
+		bike_sprite.hide()
+		player_sprite.show()
+		
+		var zoom_tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+		zoom_tween.tween_property(camera, "zoom", default_camera_zoom, .5)
+		
+		player_on_bike = false
+
+
 func _process(delta: float) -> void:
 	if currentReloadCooldown > 0:
 		currentReloadCooldown -= delta
@@ -103,13 +133,6 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#if mouse_inputs:
-		#var mouse_position = get_global_mouse_position()
-		#looking_direction = (mouse_position - global_position).normalized()
-		#weapon.look_at(mouse_position)
-	#else:
-		# looking_direction = get_looking_direction()
-
 	move_and_slide()
 
 
