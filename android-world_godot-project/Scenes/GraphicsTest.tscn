@@ -1,14 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://22b8uujrkadu"]
+[gd_scene load_steps=34 format=3 uid="uid://22b8uujrkadu"]
 
 [ext_resource type="Script" uid="uid://daj2r02cwy6mj" path="res://Scripts/Environment/BloodMarks.gd" id="1_h0e70"]
 [ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="2_vcsy5"]
 [ext_resource type="PackedScene" uid="uid://dyhaxeflnkmln" path="res://Scenes/Ship/Ship.tscn" id="3_oyakp"]
-[ext_resource type="PackedScene" uid="uid://b3nrx4ogcfxml" path="res://Scenes/Player/Player.tscn" id="4_i3e5j"]
-[ext_resource type="Script" uid="uid://c8p7jaqynocev" path="res://Scripts/GameManagement/DifficultyManager.gd" id="5_bbm6v"]
-[ext_resource type="PackedScene" uid="uid://c4xmmv3ww4l3p" path="res://Scenes/Enemies/EnemyRanged.tscn" id="6_t4e65"]
 [ext_resource type="Texture2D" uid="uid://dxat1bk7nmkjo" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture4.png" id="6_ua8hr"]
 [ext_resource type="Texture2D" uid="uid://bf026we37mrdi" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture5.png" id="7_idffb"]
-[ext_resource type="PackedScene" uid="uid://1jxgf3akb6ir" path="res://Scenes/Enemies/EnemyWalking.tscn" id="7_nkym2"]
 [ext_resource type="Texture2D" uid="uid://drc6gmntidq86" path="res://Assets/Sprites/DesertLandscape/Desert_StoneField1.png" id="8_hv76u"]
 [ext_resource type="Texture2D" uid="uid://dik8322hkf4n" path="res://Assets/Sprites/DesertLandscape/Desert_StoneField2.png" id="9_3m0lp"]
 [ext_resource type="Texture2D" uid="uid://8jsenwy2ci1o" path="res://Assets/Sprites/DesertLandscape/Desert_Artifact2.png" id="10_i3e5j"]
@@ -16,14 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://vmo2f37vas1m" path="res://Assets/Sprites/DesertLandscape/Desert_Twigs2.png" id="11_5ksmm"]
 [ext_resource type="Texture2D" uid="uid://brikjb3ce2loe" path="res://Assets/Sprites/DesertLandscape/Desert_Artifact3.png" id="11_bbm6v"]
 [ext_resource type="AudioStream" uid="uid://bbbns6gl8amd5" path="res://Assets/Audio/Music/GameplayMusicDanger.wav" id="11_d5y3w"]
-[ext_resource type="Script" uid="uid://b8qsu6v5uvqic" path="res://Scripts/Environment/DepthDriver.gd" id="12_hv76u"]
 [ext_resource type="Texture2D" uid="uid://dk36lpjyvyogi" path="res://Assets/Sprites/DesertLandscape/Desert_Boulders.png" id="12_t4e65"]
 [ext_resource type="Texture2D" uid="uid://cpjy8qxuf50bo" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture1.png" id="13_bbm6v"]
+[ext_resource type="PackedScene" uid="uid://b3nrx4ogcfxml" path="res://Scenes/Player/Player.tscn" id="13_iq7kf"]
 [ext_resource type="PackedScene" uid="uid://gn57fycjkxf6" path="res://Scenes/Environment/Desert/DesertArtifact1.tscn" id="13_nkym2"]
 [ext_resource type="Texture2D" uid="uid://bix3rele06x66" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture2.png" id="14_t4e65"]
 [ext_resource type="Texture2D" uid="uid://pqp7ufl6xms2" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture3.png" id="15_nkym2"]
+[ext_resource type="Shader" uid="uid://cddi5xxmju8qn" path="res://Shaders/BlendMode_Multiply.gdshader" id="22_3xvpg"]
 [ext_resource type="Texture2D" uid="uid://cf1hw6nx0bi8c" path="res://Assets/Sprites/DesertLandscape/Desert_PylonLarge.png" id="22_fri8l"]
-[ext_resource type="Shader" uid="uid://b54gor5rc7w6e" path="res://Assets/Materials/DepthFog.gdshader" id="23_3m0lp"]
+[ext_resource type="Texture2D" uid="uid://byd1xs6oeu17r" path="res://Assets/Sprites/PlayerProjectileGlow.png" id="22_ua8hr"]
 [ext_resource type="Texture2D" uid="uid://bsm67nv6cyub6" path="res://Assets/Sprites/DesertLandscape/Desert_PylonSmall.png" id="23_pgkeq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cp132"]
@@ -31,18 +28,73 @@ vertices = PackedVector2Array(20054, -19893, 20011, 19865, -19999, 19867, -20054
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-20064, -19952, 20064, -19903, 20021, 19875, -20009, 19877)])
 
-[sub_resource type="Curve2D" id="Curve2D_qla6v"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -800, -500, 0, 0, 0, 0, 800, -500, 0, 0, 0, 0, 800, 500, 0, 0, 0, 0, -800, 500)
-}
-point_count = 4
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3xvpg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivvpk"]
-shader = ExtResource("23_3m0lp")
-shader_parameter/Depth = 0.0
-shader_parameter/DarkColor = Color(0.294118, 0.270588, 0.294118, 1)
-shader_parameter/NormalColor = Color(0.85, 0.75, 0.6, 1)
-shader_parameter/LightColor = Color(1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_3xvpg"]
+colors = PackedColorArray(0.0563333, 0, 0.13, 1, 1, 0.917833, 0.71, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ua8hr"]
+gradient = SubResource("Gradient_3xvpg")
+
+[sub_resource type="Environment" id="Environment_d5y3w"]
+background_mode = 3
+tonemap_mode = 2
+glow_enabled = true
+glow_levels/1 = 2.17
+glow_levels/2 = 3.25
+glow_levels/3 = 0.0
+glow_levels/5 = 0.0
+glow_strength = 0.57
+glow_blend_mode = 1
+glow_hdr_threshold = 0.1
+adjustment_enabled = true
+adjustment_contrast = 1.39
+adjustment_saturation = 0.89
+adjustment_color_correction = SubResource("GradientTexture1D_ua8hr")
+
+[sub_resource type="Shader" id="Shader_d5y3w"]
+code = "shader_type canvas_item;
+
+render_mode blend_premul_alpha;
+
+uniform float horizontal_coefficient : hint_range(0.0, 0.5, 0.01) = 0.09;
+uniform float vertical_coefficient : hint_range(0.0, 0.5, 0.01) = 0.11;
+uniform float softening_coefficient : hint_range(0.0, 3.0, 0.1) = 2.0;
+uniform vec4 vignette_color : source_color;
+
+void fragment() {
+
+// Interleaved Gradient Noise
+vec2 p_coord = SCREEN_UV / SCREEN_PIXEL_SIZE;
+float ign = fract(52.9829189 * fract(dot(p_coord, vec2(0.06711056, 0.00583715))));
+float ign_reduced = (ign * 0.3 + 1.0 - 0.3);
+// Elliptical vignette with ign applied
+float vignette_alpha = (((cos(UV.x*PI*2.0)+1.0/2.0)*horizontal_coefficient+(cos(UV.y*PI*2.0)+1.0/2.0)*vertical_coefficient)*softening_coefficient)*(ign_reduced);
+// Elliptical vignette with ign applied and pulsing intensity
+//COLOR.a = (((cos(SCREEN_UV.x*PI*2.0)+1.0/2.0)*horizontal_coefficient+(cos(SCREEN_UV.y*PI*2.0)+1.0/2.0)*vertical_coefficient)*softening_coefficient*(sin(TIME*5.0)+5.0/1.0))*(ign*0.5);
+
+COLOR = vec4 (vignette_color.r, vignette_color.g, vignette_color.b, vignette_alpha);
+// Looks great but it would look better if I could somehow blur it a bit
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xvpg"]
+shader = SubResource("Shader_d5y3w")
+shader_parameter/horizontal_coefficient = 0.02
+shader_parameter/vertical_coefficient = 0.03
+shader_parameter/softening_coefficient = 1.6
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ua8hr"]
+
+[sub_resource type="Gradient" id="Gradient_idffb"]
+colors = PackedColorArray(0.193589, 0.383888, 0.60247, 1, 1, 0.756667, 0.27, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hv76u"]
+gradient = SubResource("Gradient_idffb")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3m0lp"]
+shader = ExtResource("22_3xvpg")
 
 [node name="MainGameScene" type="Node2D"]
 
@@ -286,24 +338,8 @@ z_as_relative = false
 visible = false
 z_as_relative = false
 
-[node name="Player" parent="YSort" instance=ExtResource("4_i3e5j")]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(0, 200)
-slide_on_ceiling = false
-metadata/_edit_lock_ = true
-
-[node name="DifficultyManager" type="Node2D" parent="YSort/Player"]
-z_as_relative = false
-y_sort_enabled = true
-script = ExtResource("5_bbm6v")
-enemy_scenes = Array[PackedScene]([ExtResource("6_t4e65"), ExtResource("7_nkym2")])
-
-[node name="EnemySpawningPath" type="Path2D" parent="YSort/Player/DifficultyManager"]
-curve = SubResource("Curve2D_qla6v")
-
-[node name="EnemyPathFollow2D" type="PathFollow2D" parent="YSort/Player/DifficultyManager/EnemySpawningPath"]
-position = Vector2(-800, -500)
+[node name="Player" parent="YSort" instance=ExtResource("13_iq7kf")]
+position = Vector2(-50, 309)
 
 [node name="DesertArtifact2" type="Sprite2D" parent="YSort"]
 z_as_relative = false
@@ -327,6 +363,7 @@ hframes = 2
 
 [node name="DesertBoulders2" type="Sprite2D" parent="YSort"]
 z_as_relative = false
+material = SubResource("CanvasItemMaterial_3xvpg")
 position = Vector2(-177, 611)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("12_t4e65")
@@ -366,17 +403,12 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("22_fri8l")
 offset = Vector2(0, -163)
 
-[node name="DesertPylonLarge2" type="Sprite2D" parent="YSort" node_paths=PackedStringArray("PlayerNode")]
+[node name="DesertPylonLarge2" type="Sprite2D" parent="YSort"]
 z_as_relative = false
-material = SubResource("ShaderMaterial_ivvpk")
 position = Vector2(85, 783)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("22_fri8l")
 offset = Vector2(0, -163)
-script = ExtResource("12_hv76u")
-PlayerNode = NodePath("../Player")
-DepthRange = 200.0
-DepthOffset = -1000.0
 
 [node name="DesertPylonLarge" type="Sprite2D" parent="YSort"]
 z_as_relative = false
@@ -458,3 +490,55 @@ frame = 5
 stream = ExtResource("11_d5y3w")
 volume_db = -10.0
 autoplay = true
+
+[node name="PostProcessingLayer" type="CanvasLayer" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="PostProcessingLayer"]
+environment = SubResource("Environment_d5y3w")
+
+[node name="Vignette" type="ColorRect" parent="PostProcessingLayer"]
+material = SubResource("ShaderMaterial_3xvpg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Vignette2" type="ColorRect" parent="PostProcessingLayer"]
+material = SubResource("ShaderMaterial_3xvpg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Vignette3" type="ColorRect" parent="PostProcessingLayer"]
+material = SubResource("ShaderMaterial_3xvpg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="PostProcessingLayer"]
+modulate = Color(1, 1, 1, 0.113725)
+material = SubResource("CanvasItemMaterial_ua8hr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_hv76u")
+
+[node name="PlayerProjectileGlow" type="Sprite2D" parent="PostProcessingLayer"]
+visible = false
+material = SubResource("ShaderMaterial_3m0lp")
+position = Vector2(1530, 569)
+scale = Vector2(15.2891, 15.2891)
+texture = ExtResource("22_ua8hr")
