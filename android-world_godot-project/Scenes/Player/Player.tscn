@@ -5,19 +5,19 @@
 [ext_resource type="Script" uid="uid://ba5scic023y72" path="res://Scripts/Player/PlayerPowerups.gd" id="2_t26db"]
 [ext_resource type="Texture2D" uid="uid://yt8jiybethpy" path="res://Assets/Sprites/Player.png" id="2_ude3g"]
 [ext_resource type="Script" uid="uid://gmoeknbubjgr" path="res://Scripts/Player/WeaponRotation.gd" id="3_h54ih"]
-[ext_resource type="Texture2D" uid="uid://bc1mxcvyv2hfv" path="res://Assets/Sprites/Player/Android_SpriteSheet_v0.png" id="4_825xp"]
 [ext_resource type="Texture2D" uid="uid://cqqgt05fxr4ws" path="res://Assets/Sprites/Weapon.png" id="4_ude3g"]
 [ext_resource type="Script" uid="uid://cq5figb4s3vih" path="res://Scripts/Player/ScreenShake.gd" id="5_4wape"]
 [ext_resource type="PackedScene" uid="uid://b8e4ms8gpa7de" path="res://Scenes/UI/HUD.tscn" id="5_jmcll"]
 [ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="7_825xp"]
+[ext_resource type="Texture2D" uid="uid://dt2quiko2gk71" path="res://Assets/Sprites/Player/Android_Turnaround.png" id="8_ji083"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0objx"]
 radius = 13.0
 height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w71ue"]
-radius = 13.0
-height = 54.0
+radius = 25.0
+height = 74.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wape"]
 animation = &"Idle"
@@ -53,6 +53,7 @@ states/Run/node = SubResource("AnimationNodeBlendSpace2D_4wape")
 states/Run/position = Vector2(354.889, 99.8025)
 states/Start/position = Vector2(164.444, 168.889)
 transitions = ["Start", "Run", SubResource("AnimationNodeStateMachineTransition_t26db"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_fk5o5"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_825xp")]
+graph_offset = Vector2(56, -33)
 
 [sub_resource type="Animation" id="Animation_t26db"]
 resource_name = "Idle"
@@ -213,14 +214,11 @@ offset = Vector2(50, 0)
 position = Vector2(4.8, 0)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(-1.675, -10.155)
+position = Vector2(0, -10.155)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("4_825xp")
-offset = Vector2(0, -9.745)
-flip_h = true
-hframes = 3
-vframes = 3
-frame = 4
+texture = ExtResource("8_ji083")
+offset = Vector2(0, -11)
+hframes = 8
 
 [node name="Weapon" type="Node2D" parent="PlayerSprite"]
 position = Vector2(16, 0)
@@ -254,7 +252,7 @@ collision_mask = 34
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -24)
+position = Vector2(0, -38)
 shape = SubResource("CapsuleShape2D_w71ue")
 
 [node name="HUD" parent="." instance=ExtResource("5_jmcll")]
