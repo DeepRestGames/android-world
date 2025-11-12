@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 EventBus="*res://Scripts/GameManagement/EventBus.gd"
 InputManager="*res://Scripts/GameManagement/InputManager.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [global_group]
 
 Player=""

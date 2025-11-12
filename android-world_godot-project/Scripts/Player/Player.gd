@@ -130,7 +130,33 @@ func _process(delta: float) -> void:
 	
 	if currentInvincibilityCooldown > 0:
 		currentInvincibilityCooldown -= delta
-
+		
+	#Update sprite direction manually (8D)
+	#S
+	if velocity.angle()	> PI*3/8 and velocity.angle() < PI*5/8:
+		player_sprite.frame = 0
+	#SE
+	if velocity.angle()	> PI/8 and velocity.angle() < PI*3/8:
+		player_sprite.frame = 1
+	#E
+	if velocity.angle()	< PI/8 and velocity.angle() > -PI/8:
+		player_sprite.frame = 2
+	#NE
+	if velocity.angle()	< -PI/8 and velocity.angle() > -PI*3/8:
+		player_sprite.frame = 3
+	#N
+	if velocity.angle()	< -PI*3/8 and velocity.angle() > -PI*5/8:
+		player_sprite.frame = 4
+	#NW
+	if velocity.angle()	< -PI*5/8 and velocity.angle() > -PI*7/8:
+		player_sprite.frame = 5
+	#W
+	if velocity.angle()	< -PI*7/8 or velocity.angle() > PI*7/8:
+		player_sprite.frame = 6
+	#SW
+	if velocity.angle()	> PI*5/8 and velocity.angle() < PI*7/8:
+		player_sprite.frame = 7
+	
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
