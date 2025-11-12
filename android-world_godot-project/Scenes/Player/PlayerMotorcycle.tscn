@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://du8gs1mtljnsw"]
+
+[ext_resource type="Script" uid="uid://cwc5iyn2jgtpx" path="res://Scripts/Player/PlayerMotorcycleMovement.gd" id="1_qbqam"]
+[ext_resource type="Texture2D" uid="uid://c0hr88pmffrkx" path="res://Assets/Sprites/RoundShadow.png" id="2_f53ts"]
+[ext_resource type="Texture2D" uid="uid://c5uph3qfw7fuy" path="res://Assets/Sprites/PlayerBike_Draft.png" id="4_ujbhl"]
+[ext_resource type="Script" uid="uid://cq5figb4s3vih" path="res://Scripts/Camera/ScreenShake.gd" id="9_r8ifc"]
+[ext_resource type="Script" uid="uid://do3n2m70mf7lk" path="res://Scripts/Camera/CameraZoom.gd" id="10_wk05h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qbkls"]
+radius = 36.0139
+
+[node name="PlayerMotorcycle" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 4
+script = ExtResource("1_qbqam")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.247059)
+position = Vector2(4, 42.2)
+scale = Vector2(1.25, 0.2625)
+texture = ExtResource("2_f53ts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qbkls")
+
+[node name="BikeSprite" type="Sprite2D" parent="."]
+position = Vector2(33.88, 0)
+scale = Vector2(4, 4)
+texture = ExtResource("4_ujbhl")
+hframes = 8
+vframes = 6
+frame = 21
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(0.4, 0.4)
+
+[node name="ScreenShake" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("9_r8ifc")
+
+[node name="CameraZoom" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("10_wk05h")

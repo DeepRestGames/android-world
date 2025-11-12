@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl14rt6sya3oh"]
+
+[ext_resource type="PackedScene" uid="uid://du8gs1mtljnsw" path="res://Scenes/Player/PlayerMotorcycle.tscn" id="1_6iiqb"]
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="2_a6ag2"]
+[ext_resource type="PackedScene" uid="uid://dyhaxeflnkmln" path="res://Scenes/Ship/Ship.tscn" id="3_xkibr"]
+[ext_resource type="PackedScene" uid="uid://dyhrl75vxkhcv" path="res://Scenes/Environment/Obstacle.tscn" id="9_ymkan"]
+
+[node name="MainGameScene" type="Node2D"]
+
+[node name="GroundFeatures" type="Node2D" parent="."]
+
+[node name="GroundSprite" type="Sprite2D" parent="GroundFeatures"]
+modulate = Color(0.0705882, 0.164706, 0.282353, 1)
+z_index = -100
+scale = Vector2(160, 140)
+texture = ExtResource("2_a6ag2")
+
+[node name="Obstacle" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(-811, -558)
+
+[node name="Obstacle2" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(754, -561)
+
+[node name="Obstacle3" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(-1799, 734)
+
+[node name="Obstacle4" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(-426, 1101)
+
+[node name="Obstacle5" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(-426, 1101)
+
+[node name="Obstacle6" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(1381, 1079)
+
+[node name="Obstacle7" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(-865, 295)
+
+[node name="Obstacle8" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(1670, 106)
+
+[node name="Obstacle9" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
+position = Vector2(52, -956)
+
+[node name="Ship" parent="." instance=ExtResource("3_xkibr")]
+
+[node name="PlayerMotorcycle" parent="." instance=ExtResource("1_6iiqb")]
+position = Vector2(-2250, 480)
