@@ -24,9 +24,12 @@ signal screen_shake(magnitude, duration)
 signal clear_map_from_enemies
 
 
-# Bike
+# Motorcycle
 @warning_ignore("unused_signal")
 signal get_on_bike
+
+@warning_ignore("unused_signal")
+signal update_motorcycle_moving_speed(moving_speed: float)
 
 
 # UI

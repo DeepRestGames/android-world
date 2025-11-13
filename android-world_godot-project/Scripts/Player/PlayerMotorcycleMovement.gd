@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var deceleration_rate: float = 0.07
 @export var max_movement_speed: float = 1500
 @export var acceleration: float = 300
-@export var momentum_rate: float = 0.05
+@export var momentum_rate: float = 0.08
 
 var movement_direction: Vector2
 var current_moving_speed: float = 0
@@ -24,9 +24,10 @@ func _physics_process(_delta: float) -> void:
 		velocity = lerp(velocity, Vector2.ZERO, deceleration_rate)
 	else:
 		current_moving_speed = min(current_moving_speed + acceleration, max_movement_speed)
-		
 		# Momentum
 		velocity = lerp(velocity, current_moving_speed * movement_direction, momentum_rate)
-		current_moving_speed = velocity.length()
 	
 	move_and_slide()
+
+	current_moving_speed = velocity.length()
+	EventBus.emit_signal("update_motorcycle_moving_speed", current_moving_speed / max_movement_speed)
