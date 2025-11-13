@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://batdb8f5uk1lj"]
+[gd_scene load_steps=11 format=3 uid="uid://batdb8f5uk1lj"]
 
 [ext_resource type="Script" uid="uid://buqfd7xxwbodb" path="res://Scripts/Player/Player_EF.gd" id="1_lx17d"]
+[ext_resource type="Texture2D" uid="uid://c0hr88pmffrkx" path="res://Assets/Sprites/RoundShadow.png" id="2_6rm1i"]
 [ext_resource type="Script" uid="uid://cq5figb4s3vih" path="res://Scripts/Player/ScreenShake.gd" id="2_ligqa"]
 [ext_resource type="Texture2D" uid="uid://dt2quiko2gk71" path="res://Assets/Sprites/Player/Android_Turnaround.png" id="3_6rm1i"]
 
@@ -8,8 +9,23 @@
 radius = 25.0
 height = 64.0
 
-[sub_resource type="Animation" id="Animation_lx17d"]
-resource_name = "S"
+[sub_resource type="Animation" id="Animation_grleq"]
+resource_name = "E"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_ligqa"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,8 +39,8 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_ligqa"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_lx17d"]
+resource_name = "S"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,21 +69,6 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_grleq"]
-resource_name = "E"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1t443"]
 _data = {
 &"E": SubResource("Animation_grleq"),
@@ -78,6 +79,12 @@ _data = {
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_lx17d")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.247059)
+position = Vector2(0, -2.5)
+scale = Vector2(0.4375, 0.226563)
+texture = ExtResource("2_6rm1i")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3

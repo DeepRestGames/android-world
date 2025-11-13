@@ -7,14 +7,12 @@ extends RigidBody2D
 var direction: Vector2
 var has_collided := false
 
-var projectile_reach = 600
+var projectile_reach = 800
 
 
 func _ready() -> void:
 	#var mouse_position = get_global_mouse_position()
 	#direction = (mouse_position - global_position).normalized()
-	
-	direction = InputManager.looking_direction
 	
 	rotation = direction.angle()
 

@@ -1,0 +1,237 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxhfplsf6uyep"]
+
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="1_3bpxm"]
+[ext_resource type="Texture2D" uid="uid://cpjy8qxuf50bo" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture1.png" id="2_mgebp"]
+[ext_resource type="Texture2D" uid="uid://bix3rele06x66" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture2.png" id="3_052fp"]
+[ext_resource type="Texture2D" uid="uid://pqp7ufl6xms2" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture3.png" id="4_873mn"]
+[ext_resource type="Texture2D" uid="uid://dxat1bk7nmkjo" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture4.png" id="5_fcp1i"]
+[ext_resource type="Texture2D" uid="uid://bf026we37mrdi" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture5.png" id="6_g171e"]
+[ext_resource type="Texture2D" uid="uid://drc6gmntidq86" path="res://Assets/Sprites/DesertLandscape/Desert_StoneField1.png" id="7_soaoq"]
+[ext_resource type="Texture2D" uid="uid://dik8322hkf4n" path="res://Assets/Sprites/DesertLandscape/Desert_StoneField2.png" id="8_rqh0l"]
+[ext_resource type="Texture2D" uid="uid://7bc41amacbfa" path="res://Assets/Sprites/DesertLandscape/Desert_Twigs1.png" id="9_v65wq"]
+[ext_resource type="Texture2D" uid="uid://vmo2f37vas1m" path="res://Assets/Sprites/DesertLandscape/Desert_Twigs2.png" id="10_2hyuw"]
+[ext_resource type="PackedScene" uid="uid://batdb8f5uk1lj" path="res://Scenes/Player/Player_EF.tscn" id="11_8tjf6"]
+
+[node name="Dungeon" type="Node2D"]
+
+[node name="GroundFeatures" type="Node2D" parent="."]
+
+[node name="GroundSprite" type="Sprite2D" parent="GroundFeatures"]
+modulate = Color(0.47, 0.381718, 0.3619, 1)
+z_index = -100
+scale = Vector2(160, 140)
+texture = ExtResource("1_3bpxm")
+metadata/_edit_lock_ = true
+
+[node name="DesertGroundTexture1" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(983, 13)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_mgebp")
+
+[node name="DesertGroundTexture2" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-187.75, -229)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_052fp")
+
+[node name="DesertGroundTexture3" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-373.75, 591)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_873mn")
+
+[node name="DesertGroundTexture4" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(597.25, 593)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_873mn")
+
+[node name="DesertGroundTexture5" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-586.75, 64)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_873mn")
+
+[node name="DesertGroundTexture6" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(633, -245)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_fcp1i")
+
+[node name="DesertGroundTexture7" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-211, 135)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_fcp1i")
+
+[node name="DesertGroundTexture8" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(262, -17.0001)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_g171e")
+
+[node name="DesertGroundTexture9" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(521, 18)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_g171e")
+
+[node name="DesertGroundTexture10" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(82.0001, 570)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_g171e")
+
+[node name="DesertGroundTexture11" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-119, 546)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_g171e")
+
+[node name="DesertGroundTexture12" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-244, 636)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_g171e")
+
+[node name="DesertGroundTexture13" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-73, 186)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_g171e")
+
+[node name="DesertStoneField1" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-90.0001, 410)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_soaoq")
+
+[node name="DesertStoneField2" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-310, 80.0001)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_soaoq")
+
+[node name="DesertStoneField3" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(520, 167)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_soaoq")
+
+[node name="DesertStoneField4" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(782, 420)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_soaoq")
+
+[node name="DesertStoneField5" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(635, -78)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_rqh0l")
+
+[node name="DesertStoneField6" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-324, 750)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_rqh0l")
+
+[node name="DesertStoneField7" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-776, 264)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_rqh0l")
+
+[node name="DesertTwigs1" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-275, 256)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs4" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-148, 287)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs5" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-88, 295)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs2" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-229, 245)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs3" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-241, 274)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs7" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(121, 342.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs6" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(68, 342.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs8" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(156, 325.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs9" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-530, 514.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs12" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-458, 528)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs10" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-583, 514.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs11" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-564, 557)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs13" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-762, 202.5)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs14" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-690, 216.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs17" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-866, 221)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs15" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-835, 211)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs16" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-737, 227.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs18" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(953, 370.5)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs19" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(1025, 384.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs20" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(849, 389)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_2hyuw")
+
+[node name="DesertTwigs21" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(880, 379)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="DesertTwigs22" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(978, 395.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v65wq")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("11_8tjf6")]
+motion_mode = 1
