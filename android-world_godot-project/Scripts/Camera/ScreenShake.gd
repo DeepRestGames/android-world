@@ -1,5 +1,7 @@
-extends Camera2D
+extends Node2D
 
+
+@onready var camera: Camera2D = $".."
 
 @export var random_shake_strenght: float = 20.0
 @export var shake_decay_rate: float = 5.0
@@ -17,7 +19,7 @@ func _ready():
 
 func _process(delta):
 	shake_strenght = lerp(shake_strenght, 0.0, shake_decay_rate * delta)
-	offset = get_random_offset()
+	camera.offset = get_random_offset()
 
 
 func get_random_offset() -> Vector2:

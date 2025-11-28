@@ -1,16 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl14rt6sya3oh"]
+[gd_scene load_steps=14 format=3 uid="uid://bl14rt6sya3oh"]
 
 [ext_resource type="PackedScene" uid="uid://du8gs1mtljnsw" path="res://Scenes/Player/PlayerMotorcycle.tscn" id="1_6iiqb"]
 [ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="2_a6ag2"]
+[ext_resource type="Texture2D" uid="uid://cpjy8qxuf50bo" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture1.png" id="3_vojtd"]
 [ext_resource type="PackedScene" uid="uid://dyhaxeflnkmln" path="res://Scenes/Ship/Ship.tscn" id="3_xkibr"]
+[ext_resource type="Texture2D" uid="uid://bix3rele06x66" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture2.png" id="4_drpsb"]
+[ext_resource type="Texture2D" uid="uid://pqp7ufl6xms2" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture3.png" id="5_ig3ea"]
+[ext_resource type="Texture2D" uid="uid://dxat1bk7nmkjo" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture4.png" id="6_3u011"]
+[ext_resource type="Texture2D" uid="uid://bf026we37mrdi" path="res://Assets/Sprites/DesertLandscape/Desert_GroundTexture5.png" id="7_iyty3"]
+[ext_resource type="Texture2D" uid="uid://7bc41amacbfa" path="res://Assets/Sprites/DesertLandscape/Desert_Twigs1.png" id="8_ymkan"]
+[ext_resource type="Texture2D" uid="uid://vmo2f37vas1m" path="res://Assets/Sprites/DesertLandscape/Desert_Twigs2.png" id="9_uf4bg"]
 [ext_resource type="PackedScene" uid="uid://dyhrl75vxkhcv" path="res://Scenes/Environment/Obstacle.tscn" id="9_ymkan"]
+[ext_resource type="Texture2D" uid="uid://dik8322hkf4n" path="res://Assets/Sprites/DesertLandscape/Desert_StoneField2.png" id="10_elooo"]
+[ext_resource type="Texture2D" uid="uid://drc6gmntidq86" path="res://Assets/Sprites/DesertLandscape/Desert_StoneField1.png" id="11_7uyhy"]
 
 [node name="MainGameScene" type="Node2D"]
 
 [node name="GroundFeatures" type="Node2D" parent="."]
 
 [node name="GroundSprite" type="Sprite2D" parent="GroundFeatures"]
-modulate = Color(0.0705882, 0.164706, 0.282353, 1)
+modulate = Color(0.593858, 0.400648, 0.153943, 1)
 z_index = -100
 scale = Vector2(160, 140)
 texture = ExtResource("2_a6ag2")
@@ -41,6 +50,42 @@ position = Vector2(1670, 106)
 
 [node name="Obstacle9" parent="GroundFeatures" instance=ExtResource("9_ymkan")]
 position = Vector2(52, -956)
+
+[node name="DesertGroundTexture1" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-1545, 303)
+texture = ExtResource("3_vojtd")
+
+[node name="DesertGroundTexture2" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(787, 446)
+texture = ExtResource("4_drpsb")
+
+[node name="DesertGroundTexture3" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(670, -210)
+texture = ExtResource("5_ig3ea")
+
+[node name="DesertGroundTexture4" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(140, 742)
+texture = ExtResource("6_3u011")
+
+[node name="DesertGroundTexture5" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-261, -369)
+texture = ExtResource("7_iyty3")
+
+[node name="DesertTwigs1" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-253, 487)
+texture = ExtResource("8_ymkan")
+
+[node name="DesertTwigs2" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(749, 759)
+texture = ExtResource("9_uf4bg")
+
+[node name="DesertStoneField2" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-483, 796)
+texture = ExtResource("10_elooo")
+
+[node name="DesertStoneField1" type="Sprite2D" parent="GroundFeatures"]
+position = Vector2(-533, -152)
+texture = ExtResource("11_7uyhy")
 
 [node name="Ship" parent="." instance=ExtResource("3_xkibr")]
 

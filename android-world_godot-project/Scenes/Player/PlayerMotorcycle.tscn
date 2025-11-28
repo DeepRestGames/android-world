@@ -1,34 +1,186 @@
-[gd_scene load_steps=7 format=3 uid="uid://du8gs1mtljnsw"]
+[gd_scene load_steps=30 format=3 uid="uid://du8gs1mtljnsw"]
 
 [ext_resource type="Script" uid="uid://cwc5iyn2jgtpx" path="res://Scripts/Player/PlayerMotorcycleMovement.gd" id="1_qbqam"]
 [ext_resource type="Texture2D" uid="uid://c0hr88pmffrkx" path="res://Assets/Sprites/RoundShadow.png" id="2_f53ts"]
+[ext_resource type="AnimationLibrary" uid="uid://ccchof0ek4104" path="res://Assets/Animations/Motorcycle/motorcycle_movement_animation_library.res" id="3_0d1if"]
 [ext_resource type="Texture2D" uid="uid://c5uph3qfw7fuy" path="res://Assets/Sprites/PlayerBike_Draft.png" id="4_ujbhl"]
+[ext_resource type="Texture2D" uid="uid://cqavx876fgh5s" path="res://Assets/Sprites/WhiteSprites.png" id="7_dl4g4"]
 [ext_resource type="Script" uid="uid://cq5figb4s3vih" path="res://Scripts/Camera/ScreenShake.gd" id="9_r8ifc"]
 [ext_resource type="Script" uid="uid://do3n2m70mf7lk" path="res://Scripts/Camera/CameraZoom.gd" id="10_wk05h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qbkls"]
 radius = 36.0139
 
+[sub_resource type="Animation" id="Animation_0d1if"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shadow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 0.2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shadow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.698132]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DustParticles:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-45, 35)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dl4g4"]
+_data = {
+&"RESET": SubResource("Animation_0d1if")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0d1if"]
+animation = &"motorcycle_movement_animation_library/move_S"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dl4g4"]
+animation = &"motorcycle_movement_animation_library/move_W"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gf0j8"]
+animation = &"motorcycle_movement_animation_library/move_E"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3jumi"]
+animation = &"motorcycle_movement_animation_library/move_N"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8igov"]
+animation = &"motorcycle_movement_animation_library/move_SE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f53ts"]
+animation = &"motorcycle_movement_animation_library/move_SW"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5nvu6"]
+animation = &"motorcycle_movement_animation_library/move_NW"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ujbhl"]
+animation = &"motorcycle_movement_animation_library/move_NE"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gf0j8"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0d1if")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_dl4g4")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_gf0j8")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_3jumi")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_8igov")
+blend_point_4/pos = Vector2(0.8, 0.8)
+blend_point_5/node = SubResource("AnimationNodeAnimation_f53ts")
+blend_point_5/pos = Vector2(-0.8, 0.8)
+blend_point_6/node = SubResource("AnimationNodeAnimation_5nvu6")
+blend_point_6/pos = Vector2(-0.8, -0.8)
+blend_point_7/node = SubResource("AnimationNodeAnimation_ujbhl")
+blend_point_7/pos = Vector2(0.9, -0.8)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uoa5f"]
+animation = &"motorcycle_movement_animation_library/move_E"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nvu6"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0d1if"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f53ts"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f53ts"]
+states/End/position = Vector2(845.556, 221.003)
+states/Move/node = SubResource("AnimationNodeBlendSpace2D_gf0j8")
+states/Move/position = Vector2(541.556, 221.012)
+states/Start/position = Vector2(117.778, 223.74)
+states/motorcycle_movement_animation_library_move_E/node = SubResource("AnimationNodeAnimation_uoa5f")
+states/motorcycle_movement_animation_library_move_E/position = Vector2(360.978, 349.889)
+transitions = ["motorcycle_movement_animation_library_move_E", "Move", SubResource("AnimationNodeStateMachineTransition_5nvu6"), "Move", "motorcycle_movement_animation_library_move_E", SubResource("AnimationNodeStateMachineTransition_0d1if"), "Start", "motorcycle_movement_animation_library_move_E", SubResource("AnimationNodeStateMachineTransition_f53ts")]
+graph_offset = Vector2(-121.8, 133)
+
+[sub_resource type="Curve" id="Curve_gf0j8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.461968, 0.324844), -2.50886, -2.50886, 0, 0, Vector2(1, 0), -0.325913, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3jumi"]
+curve = SubResource("Curve_gf0j8")
+
+[sub_resource type="Curve" id="Curve_dl4g4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.898073, 0.852536), -0.589857, -0.589857, 0, 0, Vector2(1, 0), -3.29141, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gf0j8"]
+curve = SubResource("Curve_dl4g4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gf0j8"]
+emission_shape = 2
+emission_sphere_radius = 15.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 5.0
+scale_min = 0.1
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_gf0j8")
+alpha_curve = SubResource("CurveTexture_3jumi")
+
 [node name="PlayerMotorcycle" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(1.2, 1.2)
 collision_mask = 4
 script = ExtResource("1_qbqam")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.247059)
-position = Vector2(4, 42.2)
-scale = Vector2(1.25, 0.2625)
+position = Vector2(0, 41)
+rotation = -0.698132
+scale = Vector2(1.1, 0.2)
 texture = ExtResource("2_f53ts")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qbkls")
 
 [node name="BikeSprite" type="Sprite2D" parent="."]
-position = Vector2(33.88, 0)
-scale = Vector2(4, 4)
+position = Vector2(0, 10)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_ujbhl")
-hframes = 8
-vframes = 6
-frame = 21
+region_enabled = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 process_mode = 3
@@ -39,3 +191,25 @@ script = ExtResource("9_r8ifc")
 
 [node name="CameraZoom" type="Node2D" parent="PlayerCamera"]
 script = ExtResource("10_wk05h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dl4g4"),
+&"motorcycle_movement_animation_library": ExtResource("3_0d1if")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_f53ts")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/is_moving = false
+parameters/Move/blend_position = Vector2(0.00611997, 0.984606)
+
+[node name="DustParticles" type="GPUParticles2D" parent="."]
+modulate = Color(0.423529, 0.262745, 0.0235294, 0.588235)
+position = Vector2(-45, 35)
+amount = 100
+texture = ExtResource("7_dl4g4")
+lifetime = 10.0
+randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_gf0j8")

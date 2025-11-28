@@ -18,10 +18,21 @@ signal player_shoot
 signal is_reloading(value)
 
 @warning_ignore("unused_signal")
+signal clear_map_from_enemies
+
+
+# Camera
+@warning_ignore("unused_signal")
 signal screen_shake(magnitude, duration)
 
 @warning_ignore("unused_signal")
-signal clear_map_from_enemies
+signal update_camera_zoom(target_zoom, update_time)
+
+@warning_ignore("unused_signal")
+signal update_camera_zoom_walking
+
+@warning_ignore("unused_signal")
+signal update_camera_zoom_bike
 
 
 # Motorcycle
